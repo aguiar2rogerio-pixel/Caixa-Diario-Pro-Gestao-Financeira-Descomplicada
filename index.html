@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Controle Financeiro Pro</title>
+    <title>Controle Financeiro Pro - Fluxo de Caixa para Autônomos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     
     <meta name="mobile-web-app-capable" content="yes">
@@ -69,6 +69,20 @@
     </style>
 </head>
 <body class="p-4 max-w-md mx-auto pb-24">
+
+    <!-- MONETIZAÇÃO: BLOCO DE ANÚNCIO TOP_BANNER (ADSENSE) -->
+    <div class="w-full bg-gray-900/50 border-2 border-dashed border-gray-800 rounded-2xl p-2 my-3 flex justify-center items-center min-h-[90px] text-center overflow-hidden">
+        <!-- Substitua pelo seu código de bloco responsivo do AdSense quando for aprovado -->
+        <ins class="adsbygoogle"
+             style="display:block; width:100%;"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="XXXXXXXXXX"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
     <!-- SALDO TOTAL VITALÍCIO -->
     <header class="text-center my-5">
@@ -175,6 +189,23 @@
         </button>
     </div>
 
+    <!-- RECOMENDAÇÕES E AFILIADOS (ESTILIZADO IGUAL AOS SEUS CARDS COM TAILWIND) -->
+    <div class="mt-6 bg-gray-900 p-4 rounded-2xl border-2 border-gray-800 shadow-md text-left">
+        <h3 class="text-xs font-black text-amber-500 mb-3 uppercase tracking-wider flex items-center gap-1">💡 Recomendações Profissionais</h3>
+        
+        <div class="space-y-3">
+            <div class="bg-gray-950 p-3 rounded-xl border border-gray-800/80">
+                <p class="text-xs text-gray-400 leading-relaxed mb-2"><strong>Maquininha com Menor Taxa:</strong> Aumente seu faturamento aceitando cartões com taxas reduzidas e sem mensalidade.</p>
+                <a href="SEU_LINK_DE_AFILIADO_AQUI" target="_blank" rel="noopener noreferrer" class="inline-block text-xs font-bold text-green-400 hover:text-green-300 transition-colors">Garantir Desconto na Maquininha ➔</a>
+            </div>
+            
+            <div class="bg-gray-950 p-3 rounded-xl border border-gray-800/80">
+                <p class="text-xs text-gray-400 leading-relaxed mb-2"><strong>Gestão Avançada:</strong> Domine de vez seu fluxo de caixa e aprenda a separar contas com leituras essenciais de negócios.</p>
+                <a href="SEU_LINK_DE_AFILIADO_AQUI" target="_blank" rel="noopener noreferrer" class="inline-block text-xs font-bold text-green-400 hover:text-green-300 transition-colors">Ver Livros Recomendados na Amazon ➔</a>
+            </div>
+        </div>
+    </div>
+
     <!-- HISTÓRICO DIÁRIO -->
     <div class="mt-6">
         <div class="flex justify-between items-center mb-2 px-1">
@@ -193,6 +224,20 @@
                 <tbody id="historico-body" class="text-sm"></tbody>
             </table>
         </div>
+    </div>
+
+    <!-- MONETIZAÇÃO: BLOCO DE ANÚNCIO BOTTOM_BANNER (ADSENSE) - ACIMA DOS MESES ARQUIVADOS -->
+    <div class="w-full bg-gray-900/50 border-2 border-dashed border-gray-800 rounded-2xl p-2 my-6 flex justify-center items-center min-h-[90px] text-center overflow-hidden">
+        <!-- Substitua pelo seu código de bloco responsivo do AdSense quando for aprovado -->
+        <ins class="adsbygoogle"
+             style="display:block; width:100%;"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="XXXXXXXXXX"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
 
     <!-- MESES ARQUIVADOS -->
@@ -272,7 +317,7 @@
         </div>
     </div>
 
-    <!-- MODAL FECHAMENTO MENSAL -->
+    <!-- MODAL DE FECHAMENTO MENSAL -->
     <div id="modal-fechar-mes" class="modal-overlay">
         <div class="modal-content text-center space-y-4">
             <h3 class="text-base font-bold text-yellow-500 uppercase tracking-wider">Confirmar Fechamento</h3>
@@ -292,6 +337,55 @@
         </label>
     </footer>
 
+    <!-- ========================================================
+         CAPA DE SEO, DADOS ESTRUTURADOS E SCRIPTS DO SISTEMA
+         ======================================================== -->
+
+    <!-- Dados Estruturados para o Google (Schema.org WebApplication) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Controle Financeiro Pro - Fluxo de Caixa para Autônomos",
+      "description": "Aplicativo PWA gratuito focado em fluxo de caixa para profissionais autônomos. Organize faturamento, gastos com combustível, manutenção de veículos e retiradas pessoais com balanço mensal prático.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires HTML5, JavaScript and Service Worker support.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "BRL"
+      },
+      "featureList": [
+        "Controle de Faturamento Diário e Renda Extra",
+        "Cálculo isolado de despesas operacionais como Combustível e Manutenção",
+        "Detalhamento completo de Gastos Pessoais com planilha auxiliar",
+        "Acompanhamento de Reservas Financeiras e Poupança acumulada",
+        "Histórico retroativo com possibilidade de edição e ajustes",
+        "Fechamento e arquivamento de balanços mensais consolidando o Caixa Geral"
+      ]
+    }
+    </script>
+
+    <!-- Conteúdo para Indexação Orgânica do Robô do Google (Invisível ao Usuário) -->
+    <section style="display: none !important;" aria-hidden="true">
+        <h1>Controle Financeiro Pro: Planilha Digital de Fluxo de Caixa para Autônomos</h1>
+        <p>Seja você motorista de aplicativo, entregador, profissional liberal, freelancer ou microempreendedor, gerenciar as entradas e saídas do seu negócio por conta própria exige disciplina e clareza. O <strong>Controle Financeiro Pro</strong> foi desenvolvido sob medida para suprir essa necessidade de forma prática e totalmente gratuita, operando direto pelo navegador como um PWA de alta performance.</p>
+        
+        <h2>Vantagens do Controle Financeiro para Quem Trabalha por Conta Própria</h2>
+        <p>Profissionais assalariados recebem um valor fixo líquido, enquanto trabalhadores autônomos lidam com faturamentos oscilantes e despesas de rodagem imediatas. Nossa aplicação resolve essa dor separando as finanças corporativas e operacionais do seu orçamento familiar:</p>
+        <ul>
+            <li><strong>Faturamento e Renda Extra:</strong> Monitore o ganho bruto diário das suas atividades principais e secundárias de forma somada.</li>
+            <li><strong>Custos Operacionais Invisíveis:</strong> Gerencie separadamente o dinheiro destinado ao combustível e crie uma reserva de manutenção preventiva para suas ferramentas de trabalho ou veículo.</li>
+            <li><strong>Retiradas e Gastos Pessoais:</strong> Evite o erro clássico de misturar o dinheiro do caixa com despesas de casa utilizando nossa planilha auxiliar interna de detalhamento de gastos.</li>
+            <li><strong>Construção de Patrimônio:</strong> Estabeleça metas reais alimentando os módulos dedicados de Reserva Financeira de emergência e Poupança acumulada.</li>
+        </ul>
+        
+        <h2>Segurança, Privacidade e Funcionamento Offline</h2>
+        <p>Por ser uma ferramenta estruturada em HTML5 moderna, o aplicativo salva todas as movimentações localmente no seu dispositivo de maneira criptografada e segura, funcionando mesmo sem conexão com a internet. Exporte ou importe backups em arquivos de texto sempre que quiser manter seus relatórios guardados fora do navegador e feche balanços mensais consolidados mantendo seu histórico limpo para o próximo período.</p>
+    </section>
+
+    <!-- Scripts Operacionais do Aplicativo -->
     <script>
         let dados = JSON.parse(localStorage.getItem('financeiro_pro')) || {
             saldoAcumulado: 0,
@@ -306,7 +400,6 @@
             return (valor || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         }
 
-        // CORREÇÃO DO FUSO HORÁRIO APLICADA AQUI (CRUCIAL PARA GITHUB PAGES)
         function obterDataHoje() {
             return new Date().toLocaleDateString('pt-BR', { 
                 day: '2-digit', 
@@ -443,7 +536,6 @@
             verificarTravaDiaria();
         }
 
-        /* OPERAÇÕES DA PLANILHA DE GASTOS */
         function abrirSubjanelaGastos() {
             document.getElementById('subjanela-gastos').classList.add('active');
             renderizarListaSubjanela();
@@ -500,7 +592,6 @@
             fecharSubjanelaGastos();
         }
 
-        /* GRAVAÇÃO DO DIA */
         function salvarLancamento(event) {
             const faturamento = parseFloat(document.getElementById('faturamento').value) || 0;
             const rendaExtra = parseFloat(document.getElementById('renda-extra').value) || 0;
@@ -538,7 +629,6 @@
             setTimeout(() => { btn.innerText = txt; btn.className = btn.className.replace('bg-green-600', 'bg-blue-600'); }, 1500);
         }
 
-        /* AJUSTES / EDIÇÃO */
         function abrirEdicao(index) {
             lancamentoEmEdicao = index;
             const item = dados.historico[index];
@@ -588,7 +678,6 @@
             }
         }
 
-        /* CONSOLIDAR BALANÇO */
         function abrirFecharMes() { document.getElementById('modal-fechar-mes').classList.add('active'); }
         function fecharModalMes() { document.getElementById('modal-fechar-mes').classList.remove('active'); }
 
@@ -631,7 +720,6 @@
             }
         }
 
-        /* LOGÍSTICA DE BACKUP */
         function exportarBackup() {
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dados));
             const dl = document.createElement('a');
@@ -661,4 +749,5 @@
         atualizarUI();
     </script>
 </body>
-            </html>
+</html>
+
