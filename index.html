@@ -22,7 +22,7 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
-        /* RETORNO DAS PÍLULAS GRANDES E CONFORTÁVEIS (Volta ao padrão original que você gosta) */
+        /* PÍLULAS GRANDES E CONFORTÁVEIS PRESERVADAS */
         .input-autonomo {
             background-color: #1f2937;
             border: 2px solid #4b5563;
@@ -67,20 +67,19 @@
             max-height: 85vh;
             overflow-y: auto;
         }
-        /* Transição do menu suspenso */
+        /* Animação do Menu Suspenso */
         #menu-sugestoes-conteudo {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
         }
         #menu-sugestoes-conteudo.aberto {
-            max-height: 500px;
+            max-height: 600px;
         }
     </style>
 </head>
 <body class="p-4 max-w-md mx-auto pb-40">
 
-    <!-- MONETIZAÇÃO: BLOCO 1 (ADSENSE COM SAUDAÇÃO CONFORTÁVEL) -->
     <div class="w-full bg-gradient-to-r from-gray-950 to-gray-900 border border-gray-800 rounded-2xl p-3 my-2 flex justify-center items-center min-h-[55px] text-center overflow-hidden relative">
         <div id="saudacao-adsense" class="absolute inset-0 flex justify-center items-center text-xs font-semibold tracking-wide text-gray-300 px-4 pointer-events-none">
             Carregando...
@@ -96,13 +95,11 @@
         </script>
     </div>
 
-    <!-- SALDO TOTAL VITALÍCIO -->
     <header class="text-center my-5">
         <h1 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Caixa Geral Acumulado</h1>
         <div id="saldo-total" class="text-4xl font-black text-green-500">R$ 0,00</div>
     </header>
 
-    <!-- CARD DO ÚLTIMO REGISTRO -->
     <div id="ultimo-resumo-container" class="hidden mb-5">
         <div class="bg-gray-900 border-2 border-gray-800 rounded-2xl p-4">
             <div class="flex justify-between items-center mb-2.5">
@@ -126,10 +123,8 @@
         </div>
     </div>
 
-    <!-- FORMULÁRIO PRINCIPAL (Com fontes e espaçamentos originais preservados) -->
     <div class="space-y-4 bg-gray-900 p-4 rounded-2xl border-2 border-gray-800 shadow-xl">
         
-        <!-- ENTRADAS -->
         <div class="grid grid-cols-2 gap-4">
             <div>
                 <label class="block text-xs font-bold text-white mb-1.5 ml-1 uppercase tracking-wide">Faturamento</label>
@@ -141,7 +136,6 @@
             </div>
         </div>
 
-        <!-- SAÍDAS OPERACIONAIS -->
         <div class="grid grid-cols-2 gap-4">
             <div>
                 <label class="block text-xs font-bold text-white mb-1.5 ml-1 uppercase tracking-wide">Combustível</label>
@@ -153,7 +147,6 @@
             </div>
         </div>
 
-        <!-- GASTOS PESSOAIS -->
         <div class="bg-gray-950 p-3 rounded-xl border border-gray-800 space-y-2">
             <div class="flex justify-between items-center">
                 <label class="block text-xs font-bold text-red-400 uppercase tracking-wide ml-1">Gastos Pessoais (-)</label>
@@ -164,7 +157,6 @@
             <input type="number" id="pessoal" readonly placeholder="R$ 0,00 calculado" class="input-bloqueado font-bold">
         </div>
 
-        <!-- RESERVAS E INVESTIMENTOS -->
         <div class="grid grid-cols-2 gap-4">
             <div>
                 <label class="block text-xs font-bold text-orange-400 mb-1.5 ml-1 uppercase tracking-wide">Reserva Finan.</label>
@@ -176,20 +168,18 @@
             </div>
         </div>
 
-        <!-- BOTÃO SALVAR PRINCIPAL ORIGINAL -->
         <button id="btn-salvar-principal" onclick="salvarLancamento(event)" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl text-lg shadow-md uppercase tracking-wider mt-1">
             Salvar Lançamento do Dia
         </button>
     </div>
 
-    <!-- MENU SUSPENSO DE AFILIADOS (Robustecido e com design visível) -->
     <div class="mt-4 bg-gray-900 border-2 border-amber-500/50 rounded-2xl overflow-hidden shadow-lg">
         <button onclick="alternarMenuSugestoes()" class="w-full p-4 bg-gradient-to-r from-amber-950/30 to-gray-900 flex justify-between items-center text-left focus:outline-none">
             <div class="flex items-center gap-3">
-                <span class="text-xl">🚀</span>
+                <span class="text-xl">💡</span>
                 <div>
-                    <h3 class="text-xs font-black text-amber-400 uppercase tracking-wider">Ferramentas para Lucrar Mais</h3>
-                    <p class="text-[10px] text-gray-400 font-medium mt-0.5">Toque aqui para ver Maquininhas e Indicações</p>
+                    <h3 class="text-xs font-black text-amber-400 uppercase tracking-wider">Sugestões Profissionais</h3>
+                    <p class="text-[10px] text-gray-400 font-medium mt-0.5">Toque aqui para ver Maquininhas e Livros Recomendados</p>
                 </div>
             </div>
             <span id="seta-sugestoes" class="text-amber-400 font-bold transition-transform duration-200 text-sm">▼</span>
@@ -198,20 +188,31 @@
         <div id="menu-sugestoes-conteudo" class="bg-gray-950 px-4 space-y-4">
             <div class="pt-4">
                 <div class="p-3 bg-gray-900 rounded-xl border border-gray-800">
-                    <p class="text-xs text-gray-300 leading-relaxed mb-2"><strong>Maquininha com Menor Taxa:</strong> Aumente seu faturamento aceitando cartões com taxas reduzidas e sem mensalidade.</p>
-                    <a href="SEU_LINK_DE_AFILIADO_AQUI" target="_blank" rel="noopener noreferrer" class="inline-block text-xs font-bold text-green-400 hover:text-green-300">Garantir Desconto na Maquininha ➔</a>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-2">
+                        <strong>Maquininha Ton (Desconto de até 71%):</strong> Taxas exclusivas a partir de 0,74%, sem aluguel e com garantia vitalícia para o seu negócio autônomo.
+                    </p>
+                    <a href="https://ton.com.br/catalogo/?referrer=0B6041EA-B7B1-40A0-80A8-FCC45AB9AB9D&userAnticipation=0&utm_medium=invite_share&utm_source=revendedor" target="_blank" rel="noopener noreferrer" class="inline-block text-xs font-bold text-green-400 hover:text-green-300">Garantir Desconto na Ton ➔</a>
+                </div>
+            </div>
+            <div>
+                <div class="p-3 bg-gray-900 rounded-xl border border-gray-800">
+                    <p class="text-xs text-gray-300 leading-relaxed mb-2">
+                        <strong>Os Segredos da Mente Milionária:</strong> Aprenda a mentalidade financeira correta e os hábitos práticos que diferenciam o sucesso do crescimento estagnado.
+                    </p>
+                    <a href="https://amzn.to/4g7kaWw" target="_blank" rel="noopener noreferrer" class="inline-block text-xs font-bold text-green-400 hover:text-green-300">Ver Livro na Amazon ➔</a>
                 </div>
             </div>
             <div class="pb-4">
                 <div class="p-3 bg-gray-900 rounded-xl border border-gray-800">
-                    <p class="text-xs text-gray-300 leading-relaxed mb-2"><strong>Gestão Avançada:</strong> Domine de vez seu fluxo de caixa e aprenda a separar contas com leituras essenciais de negócios.</p>
-                    <a href="SEU_LINK_DE_AFILIADO_AQUI" target="_blank" rel="noopener noreferrer" class="inline-block text-xs font-bold text-green-400 hover:text-green-300">Ver Livros Recomendados na Amazon ➔</a>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-2">
+                        <strong>O Homem Mais Rico da Babilônia:</strong> O maior clássico sobre multiplicação de riqueza, soluções financeiras práticas e como separar a sua reserva com disciplina.
+                    </p>
+                    <a href="https://amzn.to/4olnsr7" target="_blank" rel="noopener noreferrer" class="inline-block text-xs font-bold text-green-400 hover:text-green-300">Ver Livro na Amazon ➔</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- BALANÇO DO PERÍODO -->
     <div class="mt-4 bg-gray-900 p-4 rounded-2xl border-2 border-gray-800">
         <h2 class="text-xs font-black text-yellow-500 mb-3 uppercase tracking-wider">Balanço do Período Atual</h2>
         <div class="grid grid-cols-2 gap-2.5 text-xs mb-4">
@@ -228,7 +229,6 @@
         </button>
     </div>
 
-    <!-- HISTÓRICO -->
     <div class="mt-4">
         <div class="flex justify-between items-center mb-2 px-1">
             <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Histórico</h2>
@@ -248,7 +248,6 @@
         </div>
     </div>
 
-    <!-- MONETIZAÇÃO: BLOCO 2 (ADSENSE COM AVISO INSTITUCIONAL) -->
     <div class="w-full bg-gradient-to-r from-gray-950 to-gray-900 border border-gray-800 rounded-2xl p-3 my-5 flex justify-center items-center min-h-[55px] text-center overflow-hidden relative">
         <div class="absolute inset-0 flex justify-center items-center text-[10px] font-bold uppercase tracking-widest text-gray-500 px-4 pointer-events-none">
             🛡️ Conexão Segura Local Ativa
@@ -264,14 +263,12 @@
         </script>
     </div>
 
-    <!-- MESES ARQUIVADOS -->
     <div class="mt-4">
         <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 px-1">Meses Arquivados</h2>
         <div id="meses-anteriores-container" class="space-y-2"></div>
-        <div id="meses-vazios" class="text-center text-gray-600 text-xs italic p-3">Nenhum mês arquivo ainda</div>
+        <div id="meses-vazios" class="text-center text-gray-600 text-xs italic p-3">Nenhum mês arquivado ainda</div>
     </div>
 
-    <!-- SUBJANELA MODAL: PLANILHA DE GASTOS -->
     <div id="subjanela-gastos" class="modal-overlay">
         <div class="modal-content space-y-4">
             <div class="flex justify-between items-center border-b border-gray-700 pb-2">
@@ -312,7 +309,6 @@
         </div>
     </div>
 
-    <!-- MODAL DE EDIÇÃO -->
     <div id="modal-edicao" class="modal-overlay">
         <div class="modal-content space-y-3">
             <h3 class="text-sm font-bold text-blue-400 uppercase tracking-wider border-b border-gray-700 pb-2">Ajustar Lançamento</h3>
@@ -334,7 +330,6 @@
         </div>
     </div>
 
-    <!-- MODAL DE FECHAMENTO MENSAL -->
     <div id="modal-fechar-mes" class="modal-overlay">
         <div class="modal-content text-center space-y-4">
             <h3 class="text-base font-bold text-yellow-500 uppercase tracking-wider">Confirmar Fechamento</h3>
@@ -346,7 +341,6 @@
         </div>
     </div>
 
-    <!-- FOOTER: BACKUP FIXO -->
     <footer class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-gray-950 border-t border-gray-800 p-3 grid grid-cols-2 gap-3 z-50">
         <button onclick="exportarBackup()" class="bg-gray-900 border border-gray-700 text-gray-300 font-bold py-3 rounded-xl text-xs uppercase tracking-wider">📦 Salvar Backup</button>
         <label class="bg-gray-900 border border-gray-700 text-gray-300 font-bold py-3 rounded-xl text-xs uppercase tracking-wider text-center cursor-pointer block">
@@ -354,7 +348,6 @@
         </label>
     </footer>
 
-    <!-- Scripts Operacionais do Sistema -->
     <script>
         let dados = JSON.parse(localStorage.getItem('financeiro_pro')) || {
             saldoAcumulado: 0,
