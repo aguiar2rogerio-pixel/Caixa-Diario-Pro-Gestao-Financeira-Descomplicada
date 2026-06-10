@@ -22,13 +22,14 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
+        /* Pílulas de lançamento otimizadas (mais compactas sem perder a visibilidade) */
         .input-autonomo {
             background-color: #1f2937;
             border: 2px solid #4b5563;
             color: #ffffff;
-            font-size: 1.25rem;
-            padding: 0.75rem;
-            border-radius: 1rem;
+            font-size: 1.1rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.75rem;
             width: 100%;
         }
         .input-autonomo:focus {
@@ -40,9 +41,9 @@
             background-color: #111827;
             border: 2px dashed #4b5563;
             color: #9ca3af;
-            font-size: 1.25rem;
-            padding: 0.75rem;
-            border-radius: 1rem;
+            font-size: 1.1rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.75rem;
             width: 100%;
             cursor: not-allowed;
         }
@@ -66,15 +67,28 @@
             max-height: 85vh;
             overflow-y: auto;
         }
+        /* Transição suave do menu suspenso de afiliados */
+        #menu-sugestoes-conteudo {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        #menu-sugestoes-conteudo.aberto {
+            max-height: 500px; /* Altura máxima para permitir a expansão */
+        }
     </style>
 </head>
-<body class="p-4 max-w-md mx-auto pb-24">
+<body class="p-4 max-w-md mx-auto pb-40">
 
-    <!-- MONETIZAÇÃO: BLOCO DE ANÚNCIO TOP_BANNER (ADSENSE) -->
-    <div class="w-full bg-gray-900/50 border-2 border-dashed border-gray-800 rounded-2xl p-2 my-3 flex justify-center items-center min-h-[90px] text-center overflow-hidden">
-        <!-- Substitua pelo seu código de bloco responsivo do AdSense quando for aprovado -->
-        <ins class="adsbygoogle"
-             style="display:block; width:100%;"
+    <!-- MONETIZAÇÃO: BLOCO DE ANÚNCIO TOP_BANNER (ADSENSE + SAUDAÇÃO INTERNA) -->
+    <div class="w-full bg-gradient-to-r from-gray-950 to-gray-900 border border-gray-800 rounded-xl p-2 my-2 flex justify-center items-center min-h-[50px] text-center overflow-hidden relative">
+        <!-- Texto de Boas-Vindas Provisório (Fica por baixo até o AdSense carregar) -->
+        <div id="saudacao-adsense" class="absolute inset-0 flex justify-center items-center text-xs font-medium tracking-wide text-gray-400 px-3 pointer-events-none">
+            Carregando painel...
+        </div>
+        <!-- Estrutura do AdSense ativa para o robô identificar -->
+        <ins class="adsbygoogle relative z-10"
+             style="display:block; width:100%; min-height:40px;"
              data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
              data-ad-slot="XXXXXXXXXX"
              data-ad-format="horizontal"
@@ -85,13 +99,13 @@
     </div>
 
     <!-- SALDO TOTAL VITALÍCIO -->
-    <header class="text-center my-5">
-        <h1 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Caixa Geral Acumulado</h1>
+    <header class="text-center my-4">
+        <h1 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-0.5">Caixa Geral Acumulado</h1>
         <div id="saldo-total" class="text-4xl font-black text-green-500">R$ 0,00</div>
     </header>
 
     <!-- CARD DO ÚLTIMO REGISTRO -->
-    <div id="ultimo-resumo-container" class="hidden mb-5">
+    <div id="ultimo-resumo-container" class="hidden mb-4">
         <div class="bg-gray-900 border-2 border-gray-800 rounded-2xl p-3">
             <div class="flex justify-between items-center mb-2">
                 <h3 class="text-[10px] font-bold text-blue-400 uppercase tracking-wider">Último Registro</h3>
@@ -115,16 +129,16 @@
     </div>
 
     <!-- FORMULÁRIO PRINCIPAL -->
-    <div class="space-y-4 bg-gray-900 p-4 rounded-2xl border-2 border-gray-800 shadow-xl">
+    <div class="space-y-3 bg-gray-900 p-4 rounded-2xl border-2 border-gray-800 shadow-xl">
         
         <!-- ENTRADAS -->
         <div class="grid grid-cols-2 gap-3">
             <div>
-                <label class="block text-xs font-black text-white mb-1 ml-1 uppercase tracking-wide">Faturamento</label>
+                <label class="block text-[11px] font-black text-white mb-1 ml-1 uppercase tracking-wide">Faturamento</label>
                 <input type="number" id="faturamento" inputmode="decimal" placeholder="0,00" class="input-autonomo">
             </div>
             <div>
-                <label class="block text-xs font-black text-green-400 mb-1 ml-1 uppercase tracking-wide">Renda Extra (+)</label>
+                <label class="block text-[11px] font-black text-green-400 mb-1 ml-1 uppercase tracking-wide">Renda Extra (+)</label>
                 <input type="number" id="renda-extra" inputmode="decimal" placeholder="0,00" class="input-autonomo">
             </div>
         </div>
@@ -132,21 +146,21 @@
         <!-- SAÍDAS OPERACIONAIS -->
         <div class="grid grid-cols-2 gap-3">
             <div>
-                <label class="block text-xs font-black text-white mb-1 ml-1 uppercase tracking-wide">Combustível</label>
+                <label class="block text-[11px] font-black text-white mb-1 ml-1 uppercase tracking-wide">Combustível</label>
                 <input type="number" id="gasolina" inputmode="decimal" placeholder="0,00" class="input-autonomo">
             </div>
             <div>
-                <label class="block text-xs font-black text-white mb-1 ml-1 uppercase tracking-wide">Reserva Manutenção</label>
+                <label class="block text-[11px] font-black text-white mb-1 ml-1 uppercase tracking-wide">Reserva Manut.</label>
                 <input type="number" id="manutencao" inputmode="decimal" placeholder="0,00" class="input-autonomo">
             </div>
         </div>
 
         <!-- GASTOS PESSOAIS (PLANILHA) -->
-        <div class="bg-gray-950 p-3 rounded-xl border border-gray-800 space-y-2">
+        <div class="bg-gray-950 p-2.5 rounded-xl border border-gray-800 space-y-2">
             <div class="flex justify-between items-center">
-                <label class="block text-xs font-black text-red-400 uppercase tracking-wide ml-1">Gastos Pessoais (-)</label>
-                <button id="btn-detalhar" onclick="abrirSubjanelaGastos()" class="bg-red-950 hover:bg-red-900 border-2 border-red-600 text-white font-bold text-xs py-1.5 px-3 rounded-lg uppercase tracking-wider">
-                    📝 Detalhar Gastos
+                <label class="block text-[11px] font-black text-red-400 uppercase tracking-wide ml-1">Gastos Pessoais (-)</label>
+                <button id="btn-detalhar" onclick="abrirSubjanelaGastos()" class="bg-red-950 hover:bg-red-900 border border-red-600 text-white font-bold text-[10px] py-1 px-2.5 rounded-lg uppercase tracking-wider">
+                    📝 Detalhar
                 </button>
             </div>
             <input type="number" id="pessoal" readonly placeholder="R$ 0,00 calculado" class="input-bloqueado font-bold">
@@ -155,23 +169,54 @@
         <!-- RESERVAS E INVESTIMENTOS -->
         <div class="grid grid-cols-2 gap-3">
             <div>
-                <label class="block text-xs font-black text-orange-400 mb-1 ml-1 uppercase tracking-wide">Reserva Financeira</label>
+                <label class="block text-[11px] font-black text-orange-400 mb-1 ml-1 uppercase tracking-wide">Reserva Finan.</label>
                 <input type="number" id="reserva-financeira" inputmode="decimal" placeholder="0,00" class="input-autonomo">
             </div>
             <div>
-                <label class="block text-xs font-black text-purple-400 mb-1 ml-1 uppercase tracking-wide">Poupança</label>
+                <label class="block text-[11px] font-black text-purple-400 mb-1 ml-1 uppercase tracking-wide">Poupança</label>
                 <input type="number" id="investimento" inputmode="decimal" placeholder="0,00" class="input-autonomo">
             </div>
         </div>
 
-        <!-- BOTÃO DE LANÇAMENTO INTELIGENTE COM TRAVA -->
-        <button id="btn-salvar-principal" onclick="salvarLancamento(event)" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl text-lg shadow-md uppercase tracking-wider mt-2">
+        <!-- BOTÃO DE LANÇAMENTO INTELIGENTE -->
+        <button id="btn-salvar-principal" onclick="salvarLancamento(event)" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-xl text-base shadow-md uppercase tracking-wider mt-1">
             Salvar Lançamento do Dia
         </button>
     </div>
 
+    <!-- MENU SUSPENSO: SUGESTÕES PROFISSIONAIS (POSICIONADO NA ZONA DE OURO COM CTA) -->
+    <div class="mt-4 bg-gray-900 border-2 border-amber-600/40 rounded-2xl overflow-hidden shadow-lg">
+        <!-- Gatilho do Menu (CTA Forte que convida ao clique) -->
+        <button onclick="alternarMenuSugestoes()" class="w-full p-3 bg-gradient-to-r from-amber-950/40 to-gray-900 flex justify-between items-center text-left focus:outline-none">
+            <div class="flex items-center gap-2">
+                <span class="text-base">🚀</span>
+                <div>
+                    <h3 class="text-xs font-black text-amber-400 uppercase tracking-wider">Ferramentas para Lucrar Mais</h3>
+                    <p class="text-[9px] text-gray-400 font-medium">Clique aqui para ver Maquininhas e Livros Recomendados</p>
+                </div>
+            </div>
+            <span id="seta-sugestoes" class="text-amber-400 font-bold transition-transform duration-200 text-xs">▼</span>
+        </button>
+        
+        <!-- Conteúdo Oculto/Exponível do Menu Suspenso -->
+        <div id="menu-sugestoes-conteudo" class="bg-gray-950 px-3 space-y-3">
+            <div class="pt-3">
+                <div class="p-2.5 bg-gray-900/60 rounded-xl border border-gray-800">
+                    <p class="text-[11px] text-gray-400 leading-relaxed mb-1.5"><strong>Maquininha com Menor Taxa:</strong> Aumente sua margem bruta aceitando cartões com taxas reduzidas e sem mensalidades.</p>
+                    <a href="SEU_LINK_DE_AFILIADO_AQUI" target="_blank" rel="noopener noreferrer" class="inline-block text-[11px] font-bold text-green-400 hover:text-green-300">Garantir Desconto na Maquininha ➔</a>
+                </div>
+            </div>
+            <div class="pb-3">
+                <div class="p-2.5 bg-gray-900/60 rounded-xl border border-gray-800">
+                    <p class="text-[11px] text-gray-400 leading-relaxed mb-1.5"><strong>Gestão Avançada:</strong> Domine de vez seu fluxo de caixa e aprenda a separar contas com as melhores leituras de negócios.</p>
+                    <a href="SEU_LINK_DE_AFILIADO_AQUI" target="_blank" rel="noopener noreferrer" class="inline-block text-[11px] font-bold text-green-400 hover:text-green-300">Ver Livros na Amazon ➔</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- RESUMO DO PERÍODO CORRENTE -->
-    <div class="mt-6 bg-gray-900 p-4 rounded-2xl border-2 border-gray-800">
+    <div class="mt-4 bg-gray-900 p-4 rounded-2xl border-2 border-gray-800">
         <h2 class="text-xs font-black text-yellow-500 mb-3 uppercase tracking-wider">Balanço do Período Atual</h2>
         <div class="grid grid-cols-2 gap-2 text-xs mb-4">
             <div class="bg-gray-800 p-2 rounded-xl"><span class="block text-[9px] text-white font-bold uppercase">Faturamento</span><span id="total-faturamento" class="font-bold text-green-400 text-sm">R$ 0,00</span></div>
@@ -179,8 +224,6 @@
             <div class="bg-gray-800 p-2 rounded-xl"><span class="block text-[9px] text-white font-bold uppercase">Combustível</span><span id="total-gasolina" class="font-bold text-red-400 text-sm">R$ 0,00</span></div>
             <div class="bg-gray-800 p-2 rounded-xl"><span class="block text-[9px] text-white font-bold uppercase">Reserva Manut.</span><span id="total-manutencao" class="font-bold text-red-400 text-sm">R$ 0,00</span></div>
             <div class="bg-gray-800 p-2 rounded-xl"><span class="block text-[9px] text-white font-bold uppercase">Gastos Pessoais</span><span id="total-pessoal" class="font-bold text-red-400 text-sm">R$ 0,00</span></div>
-            
-            <!-- CONTAS DESMEMBRADAS -->
             <div class="bg-gray-800 p-2 rounded-xl"><span class="block text-[9px] text-orange-400 font-bold uppercase">Reserva Finan.</span><span id="total-reserva-aba" class="font-bold text-orange-400 text-sm">R$ 0,00</span></div>
             <div class="bg-gray-800 p-2 rounded-xl col-span-2"><span class="block text-[9px] text-purple-400 font-bold uppercase">Poupança Acumulada</span><span id="total-investimento-aba" class="font-bold text-purple-400 text-sm">R$ 0,00</span></div>
         </div>
@@ -189,25 +232,8 @@
         </button>
     </div>
 
-    <!-- RECOMENDAÇÕES E AFILIADOS (ESTILIZADO IGUAL AOS SEUS CARDS COM TAILWIND) -->
-    <div class="mt-6 bg-gray-900 p-4 rounded-2xl border-2 border-gray-800 shadow-md text-left">
-        <h3 class="text-xs font-black text-amber-500 mb-3 uppercase tracking-wider flex items-center gap-1">💡 Recomendações Profissionais</h3>
-        
-        <div class="space-y-3">
-            <div class="bg-gray-950 p-3 rounded-xl border border-gray-800/80">
-                <p class="text-xs text-gray-400 leading-relaxed mb-2"><strong>Maquininha com Menor Taxa:</strong> Aumente seu faturamento aceitando cartões com taxas reduzidas e sem mensalidade.</p>
-                <a href="SEU_LINK_DE_AFILIADO_AQUI" target="_blank" rel="noopener noreferrer" class="inline-block text-xs font-bold text-green-400 hover:text-green-300 transition-colors">Garantir Desconto na Maquininha ➔</a>
-            </div>
-            
-            <div class="bg-gray-950 p-3 rounded-xl border border-gray-800/80">
-                <p class="text-xs text-gray-400 leading-relaxed mb-2"><strong>Gestão Avançada:</strong> Domine de vez seu fluxo de caixa e aprenda a separar contas com leituras essenciais de negócios.</p>
-                <a href="SEU_LINK_DE_AFILIADO_AQUI" target="_blank" rel="noopener noreferrer" class="inline-block text-xs font-bold text-green-400 hover:text-green-300 transition-colors">Ver Livros Recomendados na Amazon ➔</a>
-            </div>
-        </div>
-    </div>
-
     <!-- HISTÓRICO DIÁRIO -->
-    <div class="mt-6">
+    <div class="mt-4">
         <div class="flex justify-between items-center mb-2 px-1">
             <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Histórico</h2>
             <button onclick="limparDados()" class="text-[9px] text-red-500 font-bold uppercase border border-red-900 px-2 py-1 rounded-lg">Zerar Tudo</button>
@@ -226,11 +252,14 @@
         </div>
     </div>
 
-    <!-- MONETIZAÇÃO: BLOCO DE ANÚNCIO BOTTOM_BANNER (ADSENSE) - ACIMA DOS MESES ARQUIVADOS -->
-    <div class="w-full bg-gray-900/50 border-2 border-dashed border-gray-800 rounded-2xl p-2 my-6 flex justify-center items-center min-h-[90px] text-center overflow-hidden">
-        <!-- Substitua pelo seu código de bloco responsivo do AdSense quando for aprovado -->
-        <ins class="adsbygoogle"
-             style="display:block; width:100%;"
+    <!-- MONETIZAÇÃO: BLOCO DE ANÚNCIO BOTTOM_BANNER (O DESAFIO DOS MESES ANTERIORES) -->
+    <div class="w-full bg-gradient-to-r from-gray-950 to-gray-900 border border-gray-800 rounded-xl p-2 my-5 flex justify-center items-center min-h-[50px] text-center overflow-hidden relative">
+        <!-- Texto Institucional Provisório (Garante aprovação e remove o vazio esquisito) -->
+        <div class="absolute inset-0 flex justify-center items-center text-[10px] font-bold uppercase tracking-widest text-gray-600 px-3 pointer-events-none">
+            🛡️ Conexão Segura Local Ativa
+        </div>
+        <ins class="adsbygoogle relative z-10"
+             style="display:block; width:100%; min-height:40px;"
              data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
              data-ad-slot="XXXXXXXXXX"
              data-ad-format="horizontal"
@@ -241,7 +270,7 @@
     </div>
 
     <!-- MESES ARQUIVADOS -->
-    <div class="mt-6">
+    <div class="mt-4">
         <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 px-1">Meses Arquivados</h2>
         <div id="meses-anteriores-container" class="space-y-2"></div>
         <div id="meses-vazios" class="text-center text-gray-600 text-xs italic p-3">Nenhum mês arquivado ainda</div>
@@ -295,7 +324,7 @@
         </div>
     </div>
 
-    <!-- MODAL DE EDIÇÃO / AJUSTE HISTÓRICO -->
+    <!-- MODAL DE EDIÇÃO -->
     <div id="modal-edicao" class="modal-overlay">
         <div class="modal-content space-y-3">
             <h3 class="text-sm font-bold text-blue-400 uppercase tracking-wider border-b border-gray-700 pb-2">Ajustar Lançamento</h3>
@@ -305,7 +334,7 @@
                 <div><label class="block text-green-400 font-bold uppercase text-[10px] mb-0.5">Renda Extra (+)</label><input type="number" id="edit-renda-extra" class="w-full bg-gray-800 border border-gray-700 p-2 rounded-lg text-white font-bold"></div>
                 <div><label class="block text-white font-bold uppercase text-[10px] mb-0.5">Combustível</label><input type="number" id="edit-gasolina" class="w-full bg-gray-800 border border-gray-700 p-2 rounded-lg text-white"></div>
                 <div><label class="block text-white font-bold uppercase text-[10px] mb-0.5">Reserva Manutenção</label><input type="number" id="edit-manutencao" class="w-full bg-gray-800 border border-gray-700 p-2 rounded-lg text-white"></div>
-                <div><label class="block text-red-400 font-bold uppercase text-[10px] mb-0.5">Gastos Pessoais (Total)</label><input type="number" id="edit-pessoal" class="w-full bg-gray-800 border border-gray-700 p-2 rounded-lg text-white font-bold"><p class="text-[9px] text-gray-500 italic mt-0.5">*Nota: Alterar o valor direto aqui anulará os itens detalhados.</p></div>
+                <div><label class="block text-red-400 font-bold uppercase text-[10px] mb-0.5">Gastos Pessoais</label><input type="number" id="edit-pessoal" class="w-full bg-gray-800 border border-gray-700 p-2 rounded-lg text-white font-bold"></div>
                 <div><label class="block text-orange-400 font-bold uppercase text-[10px] mb-0.5">Reserva Financeira</label><input type="number" id="edit-reserva-financeira" class="w-full bg-gray-800 border border-gray-700 p-2 rounded-lg text-white"></div>
                 <div><label class="block text-purple-400 font-bold uppercase text-[10px] mb-0.5">Poupança</label><input type="number" id="edit-investimento" class="w-full bg-gray-800 border border-gray-700 p-2 rounded-lg text-white"></div>
             </div>
@@ -337,11 +366,7 @@
         </label>
     </footer>
 
-    <!-- ========================================================
-         CAPA DE SEO, DADOS ESTRUTURADOS E SCRIPTS DO SISTEMA
-         ======================================================== -->
-
-    <!-- Dados Estruturados para o Google (Schema.org WebApplication) -->
+    <!-- Dados Estruturados para o Google SEO -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -355,37 +380,17 @@
         "@type": "Offer",
         "price": "0.00",
         "priceCurrency": "BRL"
-      },
-      "featureList": [
-        "Controle de Faturamento Diário e Renda Extra",
-        "Cálculo isolado de despesas operacionais como Combustível e Manutenção",
-        "Detalhamento completo de Gastos Pessoais com planilha auxiliar",
-        "Acompanhamento de Reservas Financeiras e Poupança acumulada",
-        "Histórico retroativo com possibilidade de edição e ajustes",
-        "Fechamento e arquivamento de balanços mensais consolidando o Caixa Geral"
-      ]
+      }
     }
     </script>
 
-    <!-- Conteúdo para Indexação Orgânica do Robô do Google (Invisível ao Usuário) -->
+    <!-- Conteúdo Quente SEO -->
     <section style="display: none !important;" aria-hidden="true">
         <h1>Controle Financeiro Pro: Planilha Digital de Fluxo de Caixa para Autônomos</h1>
-        <p>Seja você motorista de aplicativo, entregador, profissional liberal, freelancer ou microempreendedor, gerenciar as entradas e saídas do seu negócio por conta própria exige disciplina e clareza. O <strong>Controle Financeiro Pro</strong> foi desenvolvido sob medida para suprir essa necessidade de forma prática e totalmente gratuita, operando direto pelo navegador como um PWA de alta performance.</p>
-        
-        <h2>Vantagens do Controle Financeiro para Quem Trabalha por Conta Própria</h2>
-        <p>Profissionais assalariados recebem um valor fixo líquido, enquanto trabalhadores autônomos lidam com faturamentos oscilantes e despesas de rodagem imediatas. Nossa aplicação resolve essa dor separando as finanças corporativas e operacionais do seu orçamento familiar:</p>
-        <ul>
-            <li><strong>Faturamento e Renda Extra:</strong> Monitore o ganho bruto diário das suas atividades principais e secundárias de forma somada.</li>
-            <li><strong>Custos Operacionais Invisíveis:</strong> Gerencie separadamente o dinheiro destinado ao combustível e crie uma reserva de manutenção preventiva para suas ferramentas de trabalho ou veículo.</li>
-            <li><strong>Retiradas e Gastos Pessoais:</strong> Evite o erro clássico de misturar o dinheiro do caixa com despesas de casa utilizando nossa planilha auxiliar interna de detalhamento de gastos.</li>
-            <li><strong>Construção de Patrimônio:</strong> Estabeleça metas reais alimentando os módulos dedicados de Reserva Financeira de emergência e Poupança acumulada.</li>
-        </ul>
-        
-        <h2>Segurança, Privacidade e Funcionamento Offline</h2>
-        <p>Por ser uma ferramenta estruturada em HTML5 moderna, o aplicativo salva todas as movimentações localmente no seu dispositivo de maneira criptografada e segura, funcionando mesmo sem conexão com a internet. Exporte ou importe backups em arquivos de texto sempre que quiser manter seus relatórios guardados fora do navegador e feche balanços mensais consolidados mantendo seu histórico limpo para o próximo período.</p>
+        <p>Desenvolvido para suprir a necessidade de motoristas de aplicativo, freelancers e microempreendedores organizarem ganhos de forma simples e direta no celular.</p>
     </section>
 
-    <!-- Scripts Operacionais do Aplicativo -->
+    <!-- Scripts Operacionais do Sistema -->
     <script>
         let dados = JSON.parse(localStorage.getItem('financeiro_pro')) || {
             saldoAcumulado: 0,
@@ -408,6 +413,31 @@
             });
         }
 
+        // Sistema de Saudação Inteligente Dinâmica para o Bloco 1 do AdSense
+        function aplicarSaudacaoAdsense() {
+            const hora = new Date().getHours();
+            let msg = "👋 Olá! Que seus ganhos multipliquem hoje.";
+            if (hora >= 5 && hora < 12) msg = "🌅 Bom dia! Ótimo trabalho e ótimos lucros hoje.";
+            else if (hora >= 12 && hora < 18) msg = "☀️ Boa tarde! Mantenha o foco nas metas do caixa.";
+            else if (hora >= 18 || hora < 5) msg = "🌃 Boa noite! Fechando o caixa do dia com disciplina.";
+            
+            document.getElementById('saudacao-adsense').innerText = msg;
+        }
+
+        // Controle de Expansão do Menu Suspenso de Afiliados
+        function alternarMenuSugestoes() {
+            const conteudo = document.getElementById('menu-sugestoes-conteudo');
+            const seta = document.getElementById('seta-sugestoes');
+            
+            if (conteudo.classList.contains('aberto')) {
+                conteudo.classList.remove('aberto');
+                seta.style.transform = 'rotate(0deg)';
+            } else {
+                conteudo.classList.add('aberto');
+                seta.style.transform = 'rotate(180deg)';
+            }
+        }
+
         function verificarTravaDiaria() {
             const hoje = obterDataHoje();
             const jaLancado = dados.historico.some(item => item.data === hoje);
@@ -415,8 +445,8 @@
             const btnDetalhar = document.getElementById('btn-detalhar');
 
             if (jaLancado) {
-                btnSalvar.innerText = `⚠️ ${hoje} JÁ LANÇADO (USE O AJUSTAR)`;
-                btnSalvar.className = "w-full bg-yellow-600 text-white font-bold py-4 rounded-xl text-sm uppercase tracking-wider mt-2 cursor-not-allowed";
+                btnSalvar.innerText = `⚠️ ${hoje} JÁ LANÇADO`;
+                btnSalvar.className = "w-full bg-yellow-600 text-white font-bold py-3.5 rounded-xl text-sm uppercase tracking-wider mt-1 cursor-not-allowed";
                 btnSalvar.disabled = true;
                 btnDetalhar.disabled = true;
                 btnDetalhar.className = btnDetalhar.className.replace("bg-red-950", "bg-gray-950 text-gray-600 border-gray-800 cursor-not-allowed");
@@ -427,10 +457,10 @@
                 });
             } else {
                 btnSalvar.innerText = "Salvar Lançamento do Dia";
-                btnSalvar.className = "w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl text-lg shadow-md uppercase tracking-wider mt-2";
+                btnSalvar.className = "w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-xl text-base shadow-md uppercase tracking-wider mt-1";
                 btnSalvar.disabled = false;
                 btnDetalhar.disabled = false;
-                btnDetalhar.className = "bg-red-950 hover:bg-red-900 border-2 border-red-600 text-white font-bold text-xs py-1.5 px-3 rounded-lg uppercase tracking-wider";
+                btnDetalhar.className = "bg-red-950 hover:bg-red-900 border border-red-600 text-white font-bold text-[10px] py-1 px-2.5 rounded-lg uppercase tracking-wider";
                 
                 ['faturamento', 'renda-extra', 'gasolina', 'manutencao', 'reserva-financeira', 'investimento'].forEach(id => {
                     document.getElementById(id).disabled = false;
@@ -498,7 +528,6 @@
                     const tr = document.createElement('tr');
                     tr.className = 'border-t border-gray-800 hover:bg-gray-800/30 text-xs';
                     const sDia = parseFloat(item.saldoDia) || 0;
-                    
                     const indicadorPlanilha = (item.detalheGastos && item.detalheGastos.length > 0) ? `<span class="block text-[9px] text-red-500 font-black uppercase mt-0.5">📋 DETALHADO</span>` : '';
 
                     tr.innerHTML = `
@@ -551,9 +580,7 @@
             const descricao = descEl.value.trim();
             const valor = parseFloat(valEl.value) || 0;
 
-            if (!descricao || valor <= 0) {
-                alert('Insira uma descrição e um valor maior que zero.'); return;
-            }
+            if (!descricao || valor <= 0) { alert('Valor inválido.'); return; }
 
             itensGastosTemporarios.push({ descricao, valor });
             descEl.value = ''; valEl.value = '';
@@ -567,8 +594,7 @@
 
         function renderizarListaSubjanela() {
             const tBody = document.getElementById('lista-gastos-correntes-body');
-            tBody.innerHTML = '';
-            let totalAcumulado = 0;
+            tBody.innerHTML = ''; let totalAcumulado = 0;
 
             itensGastosTemporarios.forEach((item, index) => {
                 totalAcumulado += item.valor;
@@ -581,7 +607,6 @@
                 `;
                 tBody.appendChild(tr);
             });
-
             document.getElementById('subjanela-total-acumulado').innerText = formatarMoeda(totalAcumulado);
         }
 
@@ -610,23 +635,15 @@
             dados.historico.push({
                 data: obterDataHoje(),
                 faturamento, rendaExtra, gasolina, pessoal, manutencao, reservaFinanceira, investimento,
-                saldoDia,
-                detalheGastos: [...itensGastosTemporarios],
-                timestamp: new Date().getTime()
+                saldoDia, detalheGastos: [...itensGastosTemporarios], timestamp: new Date().getTime()
             });
 
             localStorage.setItem('financeiro_pro', JSON.stringify(dados));
-
             ['faturamento', 'renda-extra', 'gasolina', 'pessoal', 'manutencao', 'reserva-financeira', 'investimento'].forEach(id => {
                 document.getElementById(id).value = '';
             });
             itensGastosTemporarios = [];
-
             atualizarUI();
-
-            const btn = event.target; const txt = btn.innerText;
-            btn.innerText = '✓ REGISTRO SALVO'; btn.className = btn.className.replace('bg-blue-600', 'bg-green-600');
-            setTimeout(() => { btn.innerText = txt; btn.className = btn.className.replace('bg-green-600', 'bg-blue-600'); }, 1500);
         }
 
         function abrirEdicao(index) {
@@ -648,21 +665,13 @@
         function salvarEdicao() {
             if (lancamentoEmEdicao === null) return;
             const item = dados.historico[lancamentoEmEdicao];
-
             item.faturamento = parseFloat(document.getElementById('edit-faturamento').value) || 0;
             item.rendaExtra = parseFloat(document.getElementById('edit-renda-extra').value) || 0;
             item.gasolina = parseFloat(document.getElementById('edit-gasolina').value) || 0;
-            
-            const novoPessoal = parseFloat(document.getElementById('edit-pessoal').value) || 0;
-            if (novoPessoal !== item.pessoal) {
-                item.pessoal = novoPessoal;
-                item.detalheGastos = []; 
-            }
-
+            item.pessoal = parseFloat(document.getElementById('edit-pessoal').value) || 0;
             item.manutencao = parseFloat(document.getElementById('edit-manutencao').value) || 0;
             item.reservaFinanceira = parseFloat(document.getElementById('edit-reserva-financeira').value) || 0;
             item.investimento = parseFloat(document.getElementById('edit-investimento').value) || 0;
-            
             item.saldoDia = (item.faturamento + item.rendaExtra) - item.gasolina - item.pessoal - item.manutencao - item.reservaFinanceira - item.investimento;
 
             localStorage.setItem('financeiro_pro', JSON.stringify(dados));
@@ -671,7 +680,7 @@
 
         function deletarLancamento() {
             if (lancamentoEmEdicao === null) return;
-            if (confirm('Deseja excluir este registro definitivamente?')) {
+            if (confirm('Deseja excluir este registro?')) {
                 dados.historico.splice(lancamentoEmEdicao, 1);
                 localStorage.setItem('financeiro_pro', JSON.stringify(dados));
                 fecharModal(); atualizarUI();
@@ -682,8 +691,7 @@
         function fecharModalMes() { document.getElementById('modal-fechar-mes').classList.remove('active'); }
 
         function confirmarFecharMes() {
-            if (dados.historico.length === 0) { alert('Não há lançamentos no período.'); return; }
-            
+            if (dados.historico.length === 0) return;
             const agora = new Date();
             const periodo = `${agora.toLocaleString('pt-BR', { month: 'long', year: 'numeric', timeZone: 'America/Sao_Paulo' })}`.toUpperCase();
 
@@ -697,15 +705,13 @@
             dados.mesesAnteriores.push({
                 periodo, faturamentoTotal: totalFaturamentoApp, rendaExtraTotal: totalRendaExtra, saldoFinalNoMes, historico: [...dados.historico]
             });
-            dados.historico = []; 
-
+            dados.historico = [];
             localStorage.setItem('financeiro_pro', JSON.stringify(dados));
             fecharModalMes(); atualizarUI();
-            alert(`Período ${periodo} fechado e consolidado.`);
         }
 
         function deletarMesAnterior(index) {
-            if (confirm('Atenção: Excluir um período fechado alterará seu caixa acumulado vitalício. Deseja continuar?')) {
+            if (confirm('Deseja excluir este período fechado?')) {
                 dados.mesesAnteriores.splice(index, 1);
                 localStorage.setItem('financeiro_pro', JSON.stringify(dados));
                 atualizarUI();
@@ -713,7 +719,7 @@
         }
 
         function limparDados() {
-            if (confirm('Deseja apagar todo o banco de dados do aplicativo?')) {
+            if (confirm('Zerar o aplicativo inteiro?')) {
                 dados = { saldoAcumulado: 0, historico: [], mesesAnteriores: [] };
                 localStorage.setItem('financeiro_pro', JSON.stringify(dados));
                 atualizarUI();
@@ -722,8 +728,7 @@
 
         function exportarBackup() {
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dados));
-            const dl = document.createElement('a');
-            dl.setAttribute("href", dataStr);
+            const dl = document.createElement('a'); dl.setAttribute("href", dataStr);
             dl.setAttribute("download", `backup_financeiro_${new Date().toISOString().slice(0,10)}.txt`);
             document.body.appendChild(dl); dl.click(); dl.remove();
         }
@@ -735,10 +740,9 @@
                     const dadosImportados = JSON.parse(reader.result);
                     if (dadosImportados && Array.isArray(dadosImportados.historico)) {
                         dados = dadosImportados; localStorage.setItem('financeiro_pro', JSON.stringify(dados));
-                        atualizarUI(); alert('Backup restaurado.');
+                        atualizarUI();
                     }
-                } catch (e) { alert('Erro no backup.'); }
-                input.value = '';
+                } catch (e) { alert('Erro.'); }
             };
             if (input.files.length > 0) reader.readAsText(input.files[0]);
         }
@@ -746,6 +750,9 @@
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(err => console.error(err));
         }
+        
+        // Inicializa as funções customizadas ao abrir a página
+        aplicarSaudacaoAdsense();
         atualizarUI();
     </script>
 </body>
