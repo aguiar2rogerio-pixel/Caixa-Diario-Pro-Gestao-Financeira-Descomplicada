@@ -82,7 +82,7 @@
             padding: 0 10px;
         }
 
-        /* 💰 BLOCOS ADSENSE PREMIUM (Glow sutil de fundo) */
+        /* 💰 BLOCOS ADSENSE PREMIUM */
         .adsense-container {
             background-color: var(--bg-card);
             border: 1px solid var(--borda);
@@ -103,7 +103,7 @@
             line-height: 1.4;
         }
 
-        /* 🚀 BOTÃO DE ACESSO CENTRALIZADO NO DEDO (MAIOR E LEGÍVEL) */
+        /* 🚀 BOTÃO DE ACESSO CENTRALIZADO NO DEDO */
         .btn-acesso-principal {
             background: linear-gradient(135deg, var(--azul-destaque), #1d4ed8);
             color: white;
@@ -124,7 +124,7 @@
             background: #1d4ed8;
         }
 
-        /* 💡 SEÇÃO RETRÁTIL DO MANUAL (ACCORDION) - LIMPA A TELA */
+        /* 💡 SEÇÃO RETRÁTIL DO MANUAL (ACCORDION) */
         .manual-wrapper {
             display: flex;
             flex-direction: column;
@@ -192,7 +192,58 @@
             color: var(--texto-claro);
         }
 
-        /* 🔒 RODAPÉ AJUSTADO E SEGURO */
+        /* 🛍️ PILULAS DE AFILIADOS CUSTOMIZADAS (FRASES PRÁTICAS PARA EVITAR BUG) */
+        .indicacoes-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 8px 0;
+        }
+
+        .pilula-link {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            background-color: var(--bg-principal);
+            border: 1px solid var(--borda);
+            border-radius: 10px;
+            padding: 12px;
+            text-decoration: none;
+            color: var(--texto-claro);
+            transition: background-color 0.2s;
+        }
+
+        .pilula-link:active {
+            background-color: rgba(37, 99, 235, 0.1);
+            border-color: var(--azul-glow);
+        }
+
+        .pilula-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #fbbf24;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .pilula-texto {
+            font-size: 0.95rem;
+            color: var(--texto-mutado);
+            line-height: 1.4;
+        }
+
+        .pilula-texto strong {
+            color: var(--texto-claro);
+        }
+
+        .pilula-call {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--azul-glow);
+            margin-top: 2px;
+        }
+
+        /* 🔒 RODAPÉ */
         .footer-landing {
             text-align: center;
             font-size: 0.9rem;
@@ -239,7 +290,7 @@
             ABRIR O PAINEL PRÓ →
         </a>
 
-        <!-- 💡 NOVO MANUAL RETRÁTIL (ESTILO ACCORDION) -->
+        <!-- 💡 GUIA RÁPIDO DE USO REVERSO (MANUAL) -->
         <section class="manual-wrapper">
             <h2 class="manual-titulo">💡 Guia Rápido de Uso</h2>
             
@@ -280,17 +331,52 @@
             </div>
         </section>
 
-        <!-- 💰 ANÚNCIO INFERIOR -->
-        <div class="adsense-container">
-            <span class="adsense-placeholder">💡 Achados e recomendações úteis para a sua rotina...</span>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                 data-ad-slot="2222222222"
-                 data-ad-format="fluid"
-                 data-layout-key="-6t+ed+2i-1n-4w"
-                 data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <!-- 🛍️ SEÇÃO COMPARTILHADA: ADSENSE + LINKS DE AFILIADOS EM MENU SUSPENSO -->
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">💡 Achados e recomendações úteis para a sua rotina...</button>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    
+                    <!-- Bloco interno de links (Pílulas com dicas integradas para contextualizar o clique) -->
+                    <div class="indicacoes-container">
+                        
+                        <!-- Pílula 1: Ton -->
+                        <a href="https://ton.com.br/catalogo/?referrer=0B6041EA-B7B1-40A0-80A8-FCC45AB9AB9D&userAnticipation=0&utm_medium=invite_share&utm_source=revendedor" target="_blank" rel="noopener noreferrer" class="pilula-link">
+                            <span class="pilula-tag">Maquininha de Cartão</span>
+                            <span class="pilula-texto">Dica: Reduza custos operacionais. A <strong>Maquininha Ton</strong> tem taxas a partir de 0,74% e zero aluguel.</span>
+                            <span class="pilula-call">Garantir Desconto de até 71% ➔</span>
+                        </a>
+
+                        <!-- Pílula 2: Mente Milionária -->
+                        <a href="https://amzn.to/4g7kaWw" target="_blank" rel="noopener noreferrer" class="pilula-link">
+                            <span class="pilula-tag">Leitura Estratégica</span>
+                            <span class="pilula-texto">Sua mentalidade dita seu fluxo de caixa. Leia <strong>Os Segredos da Mente Milionária</strong> e mude seus hábitos.</span>
+                            <span class="pilula-call">Ver Oferta na Amazon ➔</span>
+                        </a>
+
+                        <!-- Pílula 3: Babilônia -->
+                        <a href="https://amzn.to/4olnsr7" target="_blank" rel="noopener noreferrer" class="pilula-link">
+                            <span class="pilula-tag">Gestão de Riqueza</span>
+                            <span class="pilula-texto">Aprenda a regra clássica de separar 10% de tudo o que ganha em <strong>O Homem Mais Rico da Babilônia</strong>.</span>
+                            <span class="pilula-call">Ver Livro na Amazon ➔</span>
+                        </a>
+
+                    </div>
+
+                    <!-- Espaço otimizado para o AdSense Rodar integrado às dicas -->
+                    <div style="margin-top: 12px; border-top: 1px dashed var(--borda); padding-top: 12px;">
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                             data-ad-slot="2222222222"
+                             data-ad-format="fluid"
+                             data-layout-key="-6t+ed+2i-1n-4w"
+                             data-full-width-responsive="true"></ins>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
         <!-- RODAPÉ CORRIGIDO COM PRIVACIDADE.HTML -->
@@ -333,3 +419,4 @@
     </script>
 </body>
 </html>
+
