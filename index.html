@@ -192,7 +192,7 @@
             color: var(--texto-claro);
         }
 
-        /* 🛍️ PILULAS DE AFILIADOS CUSTOMIZADAS (FRASES PRÁTICAS PARA EVITAR BUG) */
+        /* 🛍️ PILULAS DE AFILIADOS CUSTOMIZADAS */
         .indicacoes-container {
             display: flex;
             flex-direction: column;
@@ -216,6 +216,19 @@
         .pilula-link:active {
             background-color: rgba(37, 99, 235, 0.1);
             border-color: var(--azul-glow);
+        }
+
+        /* Container específico para o AdSense interno não quebrar */
+        .pilula-adsense {
+            background-color: var(--bg-principal);
+            border: 1px dashed var(--borda);
+            border-radius: 10px;
+            padding: 12px;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .pilula-tag {
@@ -273,7 +286,7 @@
             <p>Seu controle diário de caixa profissional, direto no celular.</p>
         </header>
 
-        <!-- 💰 ANÚNCIO SUPERIOR -->
+        <!-- 💰 ANÚNCIO SUPERIOR (ESPAÇO 1) -->
         <div class="adsense-container">
             <span class="adsense-placeholder">🔒 Verificando melhores ofertas e cupons recomendados...</span>
             <ins class="adsbygoogle"
@@ -290,7 +303,7 @@
             ABRIR O PAINEL PRÓ →
         </a>
 
-        <!-- 💡 GUIA RÁPIDO DE USO REVERSO (MANUAL) -->
+        <!-- 💡 GUIA RÁPIDO DE USO (MANUAL) -->
         <section class="manual-wrapper">
             <h2 class="manual-titulo">💡 Guia Rápido de Uso</h2>
             
@@ -331,13 +344,12 @@
             </div>
         </section>
 
-        <!-- 🛍️ SEÇÃO COMPARTILHADA: ADSENSE + LINKS DE AFILIADOS EM MENU SUSPENSO -->
+        <!-- 🛍️ SEÇÃO COMPARTILHADA: MENU SUSPENSO COM LINKS + ANÚNCIO -->
         <div class="accordion-item">
             <button class="accordion-header" onclick="toggleAccordion(this)">💡 Achados e recomendações úteis para a sua rotina...</button>
             <div class="accordion-content">
                 <div class="accordion-body">
                     
-                    <!-- Bloco interno de links (Pílulas com dicas integradas para contextualizar o clique) -->
                     <div class="indicacoes-container">
                         
                         <!-- Pílula 1: Ton -->
@@ -361,18 +373,18 @@
                             <span class="pilula-call">Ver Livro na Amazon ➔</span>
                         </a>
 
-                    </div>
+                        <!-- 💰 ANÚNCIO INFERIOR COMPACTADO (ESPAÇO 2) -->
+                        <div class="pilula-adsense">
+                            <span class="adsense-placeholder" style="font-size: 0.8rem; margin-bottom: 4px;">Anúncio Recomendado:</span>
+                            <ins class="adsbygoogle"
+                                 style="display:block; width:100%; min-height:90px;"
+                                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                                 data-ad-slot="2222222222"
+                                 data-ad-format="horizontal"
+                                 data-full-width-responsive="true"></ins>
+                            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                        </div>
 
-                    <!-- Espaço otimizado para o AdSense Rodar integrado às dicas -->
-                    <div style="margin-top: 12px; border-top: 1px dashed var(--borda); padding-top: 12px;">
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                             data-ad-slot="2222222222"
-                             data-ad-format="fluid"
-                             data-layout-key="-6t+ed+2i-1n-4w"
-                             data-full-width-responsive="true"></ins>
-                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                     </div>
 
                 </div>
