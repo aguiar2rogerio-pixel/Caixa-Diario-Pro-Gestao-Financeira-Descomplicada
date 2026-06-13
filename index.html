@@ -3,420 +3,650 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Controle Financeiro Pro - Fluxo de Caixa para Autônomos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- 🔑 1. SUA TAG REAL DE VERIFICAÇÃO DO GOOGLE SEARCH CONSOLE -->
+    <!-- TAG DE VERIFICAÇÃO DO GOOGLE SEARCH CONSOLE -->
     <meta name="google-site-verification" content="bLZmBVa_bJaMGYGaIyc40I9sXH7-J481-QgJ8jPEZu4" />
-    
-    <!-- 🚀 METADADOS PROFISSIONAIS (OCULTOS PARA O GOOGLE E PWA) -->
-    <title>Financeiro Pró - Fluxo de Caixa Diário</title>
-    <meta name="description" content="Gerencie seu faturamento, custos operacionais e poupança em um único lugar. Otimizado para o dia a dia.">
-    <meta name="theme-color" content="#0b111e">
+
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="manifest" href="manifest.json">
-    
-    <!-- 💰 2. SCRIPT DE ATIVAÇÃO DO GOOGLE ADSENSE (CÓDIGO OCULTO DO SEU APP) -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <meta name="apple-mobile-web-app-title" content="Finanças Pro">
+    <meta name="theme-color" content="#111111">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" type="image/png" href="./icon-192.png">
+    <link rel="apple-touch-icon" href="./icon-192.png">
 
     <style>
-        :root {
-            --bg-principal: #070b13;
-            --bg-card: #0f172a;
-            --azul-destaque: #1e40af;
-            --azul-glow: #3b82f6;
-            --verde-sucesso: #10b981;
-            --laranja-alerta: #f97316;
-            --texto-claro: #f8fafc;
-            --texto-mutado: #94a3b8;
-            --borda: #1e293b;
-            --borda-glow: #2563eb;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        body {
+            background-color: #111111;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
-
-        body {
-            background-color: var(--bg-principal);
-            color: var(--texto-claro);
-            padding: 24px 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
+        /* PÍLULAS GRANDES E CONFORTÁVEIS PRESERVADAS */
+        .input-autonomo {
+            background-color: #1f2937;
+            border: 2px solid #4b5563;
+            color: #ffffff;
+            font-size: 1.25rem;
+            padding: 0.75rem;
+            border-radius: 1rem;
             width: 100%;
-            max-width: 440px;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
         }
-
-        /* 📋 TOPO PREMIUM MOBILE */
-        .header-landing {
-            text-align: center;
-            padding: 16px 0 8px 0;
+        .input-autonomo:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background-color: #111827;
         }
-
-        .header-landing h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--texto-claro);
-            letter-spacing: -0.025em;
-            margin-bottom: 8px;
+        .input-bloqueado {
+            background-color: #111827;
+            border: 2px dashed #4b5563;
+            color: #9ca3af;
+            font-size: 1.25rem;
+            padding: 0.75rem;
+            border-radius: 1rem;
+            width: 100%;
+            cursor: not-allowed;
         }
-
-        .header-landing p {
-            font-size: 1.1rem;
-            line-height: 1.5;
-            color: var(--texto-mutado);
-        }
-
-        /* 💰 3. ONDE ESTÃO OS ESPAÇOS DO ADSENSE (ESTILIZADOS COM PÍLULA DE FUNDO) */
-        .adsense-container {
-            background-color: var(--bg-card);
-            border: 1px dashed var(--borda-glow);
-            border-radius: 16px;
-            min-height: 100px;
-            display: flex;
-            align-items: center;
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
             justify-content: center;
-            text-align: center;
-            padding: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-            position: relative;
-        }
-
-        .adsense-placeholder {
-            color: var(--texto-mutado);
-            font-size: 0.95rem;
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        /* 🚀 BOTÃO DE ACESSO CENTRALIZADO NO DEDO */
-        .btn-acesso-principal {
-            background: linear-gradient(135deg, var(--azul-destaque), #1d4ed8);
-            color: white;
-            border: 1px solid var(--borda-glow);
-            border-radius: 16px;
-            padding: 22px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            text-align: center;
-            text-decoration: none;
-            letter-spacing: 0.05em;
-            box-shadow: 0 0 20px rgba(37, 99, 235, 0.2);
-            transition: transform 0.1s;
-        }
-
-        .btn-acesso-principal:active {
-            transform: scale(0.97);
-        }
-
-        /* 🛍️ 4. SEÇÃO DE LINKS DE AFILIADOS (PÍLULAS NAVEGÁVEIS COMPACTAS) */
-        .afiliados-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .afiliados-titulo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--laranja-alerta);
-            padding-left: 4px;
-        }
-
-        /* Carrossel de Pílulas Horizontais */
-        .afiliados-carrossel {
-            display: flex;
-            gap: 12px;
-            overflow-x: auto;
-            padding-bottom: 8px;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .afiliados-carrossel::-webkit-scrollbar {
-            height: 4px;
-        }
-
-        .afiliados-carrossel::-webkit-scrollbar-thumb {
-            background: var(--borda);
-            border-radius: 4px;
-        }
-
-        .pilula-link {
-            flex: 0 0 85%;
-            scroll-snap-align: start;
-            background-color: var(--bg-card);
-            border: 1px solid var(--borda);
-            border-radius: 12px;
-            padding: 16px;
-            text-decoration: none;
-            color: var(--texto-claro);
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .pilula-link:active {
-            border-color: var(--laranja-alerta);
-        }
-
-        .pilula-tag {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--laranja-alerta);
-            letter-spacing: 0.05em;
-        }
-
-        .pilula-nome {
-            font-size: 1.05rem;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        .pilula-sub {
-            font-size: 0.85rem;
-            color: var(--texto-mutado);
-        }
-
-        /* 💡 SEÇÃO RETRÁTIL DO MANUAL (ACCORDION) */
-        .manual-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .manual-titulo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--verde-sucesso);
-            padding-left: 4px;
-        }
-
-        .accordion-item {
-            background-color: var(--bg-card);
-            border: 1px solid var(--borda);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .accordion-header {
-            width: 100%;
-            background: none;
-            border: none;
-            color: var(--texto-claro);
-            padding: 16px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-align: left;
-            display: flex;
-            justify-content: space-between;
             align-items: center;
         }
-
-        .accordion-header::after {
-            content: "▼";
-            font-size: 0.8rem;
-            color: var(--texto-mutado);
-            transition: transform 0.2s;
+        .modal-overlay.active { display: flex; }
+        .modal-content {
+            background-color: #1f2937;
+            border: 2px solid #6b7280;
+            border-radius: 1.5rem;
+            padding: 1.25rem;
+            width: 92%;
+            max-width: 380px;
+            max-height: 85vh;
+            overflow-y: auto;
         }
-
-        .accordion-item.ativo .accordion-header::after {
-            transform: rotate(180deg);
-            color: var(--verde-sucesso);
-        }
-
-        .accordion-content {
+        /* Animação do Menu Suspenso */
+        #menu-sugestoes-conteudo {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.2s ease-out;
-            background-color: rgba(7, 11, 19, 0.4);
+            transition: max-height 0.3s ease-out;
         }
-
-        .accordion-body {
-            padding: 16px;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            color: var(--texto-mutado);
-            border-top: 1px solid var(--borda);
-        }
-
-        .accordion-body strong {
-            color: var(--texto-claro);
-        }
-
-        /* 🔒 RODAPÉ AJUSTADO E SEGURO */
-        .footer-landing {
-            text-align: center;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            color: var(--texto-mutado);
-            margin-top: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .footer-landing a {
-            color: var(--texto-claro);
-            text-decoration: underline;
-            font-weight: 500;
+        #menu-sugestoes-conteudo.aberto {
+            max-height: 600px;
         }
     </style>
 </head>
-<body>
+<body class="p-4 max-w-md mx-auto pb-40">
 
-    <div class="container">
-
-        <!-- HEADER PRINCIPAL -->
-        <header class="header-landing">
-            <h1>📊 Financeiro Pró</h1>
-            <p>Seu controle diário de caixa profissional, direto no celular.</p>
-        </header>
-
-        <!-- 💰 ESPAÇO DO ADSENSE 1 (TOPO) -->
-        <div class="adsense-container">
-            <span class="adsense-placeholder">🔒 Buscando melhores ferramentas de otimização...</span>
-            <!-- O script do AdSense injetará o anúncio real exatamente aqui dentro -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                 data-ad-slot="1111111111"
-                 data-ad-format="horizontal"
-                 data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    <!-- MONETIZAÇÃO: BLOCO 1 (ADSENSE COM SAUDAÇÃO CONFORTÁVEL) -->
+    <div class="w-full bg-gradient-to-r from-gray-950 to-gray-900 border border-gray-800 rounded-2xl p-3 my-2 flex justify-center items-center min-h-[55px] text-center overflow-hidden relative">
+        <div id="saudacao-adsense" class="absolute inset-0 flex justify-center items-center text-xs font-semibold tracking-wide text-gray-300 px-4 pointer-events-none">
+            Carregando...
         </div>
-
-        <!-- 🚀 BOTÃO DE ENTRADA DO APLICATIVO -->
-        <a href="app.html" class="btn-acesso-principal">
-            ABRIR O PAINEL PRÓ →
-        </a>
-
-        <!-- 🛍️ SEÇÃO DE LINKS DE AFILIADOS (PÍLULAS NAVEGÁVEIS IGUAIS ÀS SUAS) -->
-        <section class="afiliados-wrapper">
-            <h2 class="afiliados-titulo">⚡ Indicações & Ferramentas Recomendadas</h2>
-            
-            <div class="afiliados-carrossel">
-                <!-- Substitua o '#' pelo seu link real da maquininha/afiliado -->
-                <a href="#" target="_blank" class="pilula-link">
-                    <span class="pilula-tag">Maquininha Pró</span>
-                    <span class="pilula-nome">Melhores Taxas para Autônomos</span>
-                    <span class="pilula-sub">Garanta o menor desconto no seu faturamento diário.</span>
-                </a>
-
-                <a href="#" target="_blank" class="pilula-link">
-                    <span class="pilula-tag">Utensílios</span>
-                    <span class="pilula-nome">Organizadores & Suportes Veiculares</span>
-                    <span class="pilula-sub">Melhores achados em oferta para o seu dia a dia.</span>
-                </a>
-
-                <a href="#" target="_blank" class="pilula-link">
-                    <span class="pilula-tag">Livros</span>
-                    <span class="pilula-nome">Mentalidade Financeira e Negócios</span>
-                    <span class="pilula-sub">Leituras recomendadas para turbinar seus lucros.</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- 💡 MANUAL RETRÁTIL (MANTÉM O MOBILE LIMPO) -->
-        <section class="manual-wrapper">
-            <h2 class="manual-titulo">💡 Guia Rápido de Uso</h2>
-            
-            <div class="accordion-item">
-                <button class="accordion-header" onclick="toggleAccordion(this)">1. Lançamento Diário</button>
-                <div class="accordion-content">
-                    <div class="accordion-body">
-                        Preencha o seu <strong>Faturamento Bruto</strong> obtido no dia e lance suas despesas fixas imediatas de forma descomplicada.
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header" onclick="toggleAccordion(this)">2. Custos do Veículo</button>
-                <div class="accordion-content">
-                    <div class="accordion-body">
-                        Monitore de perto os gastos com <strong>Combustível</strong> e defina a porcentagem da sua <strong>Reserva de Manutenção</strong> para evitar surpresas mecânicas.
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header" onclick="toggleAccordion(this)">3. Gastos Pessoais</button>
-                <div class="accordion-content">
-                    <div class="accordion-body">
-                        Use o painel interno <strong>"Detalhar"</strong> para separar retiradas de dinheiro pessoais dos custos operacionais do seu trabalho.
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header" onclick="toggleAccordion(this)">4. Fechamento Mensal</button>
-                <div class="accordion-content">
-                    <div class="accordion-body">
-                        Ao fim do mês, clique em <strong>"Fechar Balanço Mensal"</strong> para limpar a tela de trabalho e salvar o saldo líquido direto no histórico do seu aparelho.
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 💰 ESPAÇO DO ADSENSE 2 (INFERIOR) -->
-        <div class="adsense-container">
-            <span class="adsense-placeholder">💡 Carregando cupons e vantagens exclusivas...</span>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                 data-ad-slot="2222222222"
-                 data-ad-format="fluid"
-                 data-layout-key="-6t+ed+2i-1n-4w"
-                 data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-
-        <!-- RODAPÉ CORRIGIDO COM PRIVACIDADE.HTML -->
-        <footer class="footer-landing">
-            <span>🛡️ Conexão local criptografada. Seus registros financeiros ficam salvos apenas no seu telefone.</span>
-            <a href="privacidade.html">Política de Privacidade</a>
-        </footer>
-
+        <ins class="adsbygoogle relative z-10"
+             style="display:block; width:100%; min-height:45px;"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="XXXXXXXXXX"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
 
-    <script>
-        function toggleAccordion(botao) {
-            const item = botao.parentElement;
-            const conteudo = botao.nextElementSibling;
-            
-            document.querySelectorAll('.accordion-item').forEach(outro => {
-                if (outro !== item) {
-                    outro.classList.remove('ativo');
-                    outro.querySelector('.accordion-content').style.maxHeight = null;
-                }
-            });
+    <!-- SALDO TOTAL VITALÍCIO -->
+    <header class="text-center my-5">
+        <h1 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Caixa Geral Acumulado</h1>
+        <div id="saldo-total" class="text-4xl font-black text-green-500">R$ 0,00</div>
+    </header>
 
-            item.classList.toggle('ativo');
-            if (item.classList.contains('ativo')) {
-                conteudo.style.maxHeight = conteudo.scrollHeight + "px";
+    <!-- CARD DO ÚLTIMO REGISTRO -->
+    <div id="ultimo-resumo-container" class="hidden mb-5">
+        <div class="bg-gray-900 border-2 border-gray-800 rounded-2xl p-4">
+            <div class="flex justify-between items-center mb-2.5">
+                <h3 class="text-[11px] font-bold text-blue-400 uppercase tracking-wider">Último Registro</h3>
+                <span id="last-date" class="text-xs text-gray-400 font-black"></span>
+            </div>
+            <div class="grid grid-cols-3 gap-2.5 text-center text-xs">
+                <div class="bg-gray-800 p-2.5 rounded-xl">
+                    <span class="block text-[9px] text-white uppercase font-bold mb-0.5">Entradas</span>
+                    <span id="last-ganho" class="font-bold text-green-400">R$ 0</span>
+                </div>
+                <div class="bg-gray-800 p-2.5 rounded-xl">
+                    <span class="block text-[9px] text-white uppercase font-bold mb-0.5">Saídas</span>
+                    <span id="last-gastos" class="font-bold text-red-400">R$ 0</span>
+                </div>
+                <div class="bg-gray-800 p-2.5 rounded-xl">
+                    <span class="block text-[9px] text-white uppercase font-bold mb-0.5">Reservas</span>
+                    <span id="last-reserva" class="font-bold text-orange-400">R$ 0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORMULÁRIO PRINCIPAL -->
+    <div class="space-y-4 bg-gray-900 p-4 rounded-2xl border-2 border-gray-800 shadow-xl">
+        
+        <!-- ENTRADAS -->
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <label class="block text-xs font-bold text-white mb-1.5 ml-1 uppercase tracking-wide">Faturamento</label>
+                <input type="number" id="faturamento" inputmode="decimal" placeholder="0,00" class="input-autonomo">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-green-400 mb-1.5 ml-1 uppercase tracking-wide">Renda Extra (+)</label>
+                <input type="number" id="renda-extra" inputmode="decimal" placeholder="0,00" class="input-autonomo">
+            </div>
+        </div>
+
+        <!-- SAÍDAS OPERACIONAIS -->
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <label class="block text-xs font-bold text-white mb-1.5 ml-1 uppercase tracking-wide">Combustível</label>
+                <input type="number" id="gasolina" inputmode="decimal" placeholder="0,00" class="input-autonomo">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-white mb-1.5 ml-1 uppercase tracking-wide">Reserva Manut.</label>
+                <input type="number" id="manutencao" inputmode="decimal" placeholder="0,00" class="input-autonomo">
+            </div>
+        </div>
+
+        <!-- GASTOS PESSOAIS -->
+        <div class="bg-gray-950 p-3 rounded-xl border border-gray-800 space-y-2">
+            <div class="flex justify-between items-center">
+                <label class="block text-xs font-bold text-red-400 uppercase tracking-wide ml-1">Gastos Pessoais (-)</label>
+                <button id="btn-detalhar" onclick="abrirSubjanelaGastos()" class="bg-red-950 hover:bg-red-900 border border-red-600 text-white font-bold text-xs py-1 px-3 rounded-lg uppercase tracking-wider">
+                    📝 Detalhar
+                </button>
+            </div>
+            <input type="number" id="pessoal" readonly placeholder="R$ 0,00 calculated" class="input-bloqueado font-bold">
+        </div>
+
+        <!-- RESERVAS E INVESTIMENTOS -->
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <label class="block text-xs font-bold text-orange-400 mb-1.5 ml-1 uppercase tracking-wide">Reserva Finan.</label>
+                <input type="number" id="reserva-financeira" inputmode="decimal" placeholder="0,00" class="input-autonomo">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-purple-400 mb-1.5 ml-1 uppercase tracking-wide">Poupança</label>
+                <input type="number" id="investimento" inputmode="decimal" placeholder="0,00" class="input-autonomo">
+            </div>
+        </div>
+
+        <!-- BOTÃO SALVAR PRINCIPAL -->
+        <button id="btn-salvar-principal" onclick="salvarLancamento(event)" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl text-lg shadow-md uppercase tracking-wider mt-1">
+            Salvar Lançamento do Dia
+        </button>
+    </div>
+
+    <!-- MENU SUSPENSO: 💡 SUGESTÕES PROFISSIONAIS INTEGRADAS -->
+    <div class="mt-4 bg-gray-900 border-2 border-amber-500/50 rounded-2xl overflow-hidden shadow-lg">
+        <button onclick="alternarMenuSugestoes()" class="w-full p-4 bg-gradient-to-r from-amber-950/30 to-gray-900 flex justify-between items-center text-left focus:outline-none">
+            <div class="flex items-center gap-3">
+                <span class="text-xl">💡</span>
+                <div>
+                    <h3 class="text-xs font-black text-amber-400 uppercase tracking-wider">Sugestões Profissionais</h3>
+                    <p class="text-[10px] text-gray-400 font-medium mt-0.5">Toque aqui para ver Maquininhas e Livros Recomendados</p>
+                </div>
+            </div>
+            <span id="seta-sugestoes" class="text-amber-400 font-bold transition-transform duration-200 text-sm">▼</span>
+        </button>
+        
+        <div id="menu-sugestoes-conteudo" class="bg-gray-950 px-4 space-y-4">
+            <!-- Item 1: Maquininha Ton -->
+            <div class="pt-4">
+                <div class="p-3 bg-gray-900 rounded-xl border border-gray-800">
+                    <p class="text-xs text-gray-300 leading-relaxed mb-2">
+                        <strong>Maquininha Ton (Desconto de até 71%):</strong> Taxas exclusivas a partir de 0,74%, sem aluguel e com garantia vitalícia para o seu negócio autônomo.
+                    </p>
+                    <a href="https://ton.com.br/catalogo/?referrer=0B6041EA-B7B1-40A0-80A8-FCC45AB9AB9D&userAnticipation=0&utm_medium=invite_share&utm_source=revendedor" target="_blank" rel="noopener noreferrer" class="inline-block text-xs font-bold text-green-400 hover:text-green-300">Garantir Desconto na Ton ➔</a>
+                </div>
+            </div>
+            <!-- Item 2: Livro Mente Milionária -->
+            <div>
+                <div class="p-3 bg-gray-900 rounded-xl border border-gray-800">
+                    <p class="text-xs text-gray-300 leading-relaxed mb-2">
+                        <strong>Os Segredos da Mente Milionária:</strong> Aprenda a mentalidade financeira correta e os habits práticos que diferenciam o sucesso do crescimento estagnado.
+                    </p>
+                    <a href="https://amzn.to/4g7kaWw" target="_blank" rel="noopener noreferrer" class="inline-block text-xs font-bold text-green-400 hover:text-green-300">Ver Livro na Amazon ➔</a>
+                </div>
+            </div>
+            <!-- Item 3: Livro Babilônia -->
+            <div class="pb-4">
+                <div class="p-3 bg-gray-900 rounded-xl border border-gray-800">
+                    <p class="text-xs text-gray-300 leading-relaxed mb-2">
+                        <strong>O Homem Mais Rico da Babilônia:</strong> O maior clássico sobre multiplicação de riqueza, soluções financeiras práticas e como separar a sua reserva com disciplina.
+                    </p>
+                    <a href="https://amzn.to/4olnsr7" target="_blank" rel="noopener noreferrer" class="inline-block text-xs font-bold text-green-400 hover:text-green-300">Ver Livro na Amazon ➔</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BALANÇO DO PERÍODO -->
+    <div class="mt-4 bg-gray-900 p-4 rounded-2xl border-2 border-gray-800">
+        <h2 class="text-xs font-black text-yellow-500 mb-3 uppercase tracking-wider">Balanço do Período Atual</h2>
+        <div class="grid grid-cols-2 gap-2.5 text-xs mb-4">
+            <div class="bg-gray-800 p-2.5 rounded-xl"><span class="block text-[9px] text-white font-bold uppercase">Faturamento</span><span id="total-faturamento" class="font-bold text-green-400 text-sm">R$ 0,00</span></div>
+            <div class="bg-gray-800 p-2.5 rounded-xl"><span class="block text-[9px] text-white font-bold uppercase">Renda Extra</span><span id="total-renda-extra" class="font-bold text-green-400 text-sm">R$ 0,00</span></div>
+            <div class="bg-gray-800 p-2.5 rounded-xl"><span class="block text-[9px] text-white font-bold uppercase">Combustível</span><span id="total-gasolina" class="font-bold text-red-400 text-sm">R$ 0,00</span></div>
+            <div class="bg-gray-800 p-2.5 rounded-xl"><span class="block text-[9px] text-white font-bold uppercase">Reserva Manut.</span><span id="total-manutencao" class="font-bold text-red-400 text-sm">R$ 0,00</span></div>
+            <div class="bg-gray-800 p-2.5 rounded-xl"><span class="block text-[9px] text-white font-bold uppercase">Gastos Pessoais</span><span id="total-pessoal" class="font-bold text-red-400 text-sm">R$ 0,00</span></div>
+            <div class="bg-gray-800 p-2.5 rounded-xl"><span class="block text-[9px] text-orange-400 font-bold uppercase">Reserva Finan.</span><span id="total-reserva-aba" class="font-bold text-orange-400 text-sm">R$ 0,00</span></div>
+            <div class="bg-gray-800 p-2.5 rounded-xl col-span-2"><span class="block text-[9px] text-purple-400 font-bold uppercase">Poupança Acumulada</span><span id="total-investimento-aba" class="font-bold text-purple-400 text-sm">R$ 0,00</span></div>
+        </div>
+        <button onclick="abrirFecharMes()" class="w-full bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider">
+            📅 Fechar Balanço Mensal
+        </button>
+    </div>
+
+    <!-- HISTÓRICO -->
+    <div class="mt-4">
+        <div class="flex justify-between items-center mb-2 px-1">
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Histórico</h2>
+            <button onclick="limparDados()" class="text-[9px] text-red-500 font-bold uppercase border border-red-900 px-2 py-1 rounded-lg">Zerar Tudo</button>
+        </div>
+        <div class="overflow-hidden rounded-xl border-2 border-gray-800 shadow-md">
+            <table class="w-full text-left border-collapse bg-gray-900">
+                <thead>
+                    <tr class="bg-gray-800 text-white text-[10px] uppercase font-bold tracking-wider border-b border-gray-700">
+                        <th class="p-3">Data</th>
+                        <th class="p-3">Saldo Líquido</th>
+                        <th class="p-3 text-right">Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="historico-body" class="text-sm"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- MONETIZAÇÃO: BLOCO 2 (ADSENSE COM AVISO INSTITUCIONAL) -->
+    <div class="w-full bg-gradient-to-r from-gray-950 to-gray-900 border border-gray-800 rounded-2xl p-3 my-5 flex justify-center items-center min-h-[55px] text-center overflow-hidden relative">
+        <div class="absolute inset-0 flex justify-center items-center text-[10px] font-bold uppercase tracking-widest text-gray-500 px-4 pointer-events-none">
+            🛡️ Conexão Segura Local Ativa
+        </div>
+        <ins class="adsbygoogle relative z-10"
+             style="display:block; width:100%; min-height:45px;"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="XXXXXXXXXX"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <!-- MESES ARQUIVADOS -->
+    <div class="mt-4">
+        <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 px-1">Meses Arquivados</h2>
+        <div id="meses-anteriores-container" class="space-y-2"></div>
+        <div id="meses-vazios" class="text-center text-gray-600 text-xs italic p-3">Nenhum mês arquivado ainda</div>
+    </div>
+
+    <!-- SUBJANELA MODAL: PLANILHA DE GASTOS -->
+    <div id="subjanela-gastos" class="modal-overlay">
+        <div class="modal-content space-y-4">
+            <div class="flex justify-between items-center border-b border-gray-700 pb-2">
+                <h3 class="text-sm font-bold text-red-400 uppercase tracking-wider">Planilha de Gastos</h3>
+                <button onclick="fecharSubjanelaGastos()" class="text-gray-400 text-lg font-bold">✕</button>
+            </div>
+            
+            <div class="space-y-2 bg-gray-950 p-3 rounded-xl border border-gray-800">
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold text-white mb-0.5">Descrição</label>
+                        <input type="text" id="gasto-item-desc" placeholder="Ex: Café, Pneu" class="w-full bg-gray-800 border border-gray-700 p-2.5 rounded-lg text-white text-xs">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold text-white mb-0.5">Valor (R$)</label>
+                        <div class="flex gap-1">
+                            <input type="number" id="gasto-item-val" inputmode="decimal" placeholder="0,00" class="w-full bg-gray-800 border border-gray-700 p-2.5 rounded-lg text-white text-xs">
+                            <button onclick="adicionarItemNaLista()" class="bg-red-600 text-white font-black px-3 rounded-lg text-sm">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-h-40 overflow-y-auto border border-gray-700 rounded-xl bg-gray-950">
+                <table class="w-full text-left text-xs text-gray-300">
+                    <tbody id="lista-gastos-correntes-body"></tbody>
+                </table>
+            </div>
+
+            <div class="flex justify-between items-center bg-gray-800 p-3 rounded-xl font-bold border border-gray-700 text-sm">
+                <span class="text-white uppercase text-xs">Total do Dia:</span>
+                <span id="subjanela-total-acumulado" class="text-red-400">R$ 0,00</span>
+            </div>
+
+            <button onclick="salvarSubjanelaGastos()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider">
+                💾 Confirmar e Enviar para a Tela
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL DE EDIÇÃO -->
+    <div id="modal-edicao" class="modal-overlay">
+        <div class="modal-content space-y-3">
+            <h3 class="text-sm font-bold text-blue-400 uppercase tracking-wider border-b border-gray-700 pb-2">Ajustar Lançamento</h3>
+            <div class="space-y-2 text-xs">
+                <div><label class="block text-gray-400 font-bold uppercase text-[10px] mb-0.5">Data</label><input type="text" id="edit-data" disabled class="w-full bg-gray-900 border border-gray-800 p-2 rounded-lg text-gray-500 font-bold"></div>
+                <div><label class="block text-white font-bold uppercase text-[10px] mb-0.5">Faturamento</label><input type="number" id="edit-faturamento" class="w-full bg-gray-800 border border-gray-700 p-2 rounded-lg text-white font-bold"></div>
+                <div><label class="block text-green-400 font-bold uppercase text-[10px] mb-0.5">Renda Extra (+)</label><input type="number" id="edit-renda-extra" class="w-full bg-gray-800 border border-gray-700 p-2 rounded-lg text-white font-bold"></div>
+                <div><label class="block text-white font-bold uppercase text-[10px] mb-0.5">Combustível</label><input type="number" id="edit-gasolina" class="w-full bg-gray-800 border border-gray-700 p-2 rounded-lg text-white"></div>
+                <div><label class="block text-white font-bold uppercase text-[10px] mb-0.5">Reserva Manutenção</label><input type="number" id="edit-manutencao" class="w-full bg-gray-800 border border-gray-700 p-2 rounded-lg text-white"></div>
+                <div><label class="block text-red-400 font-bold uppercase text-[10px] mb-0.5">Gastos Pessoais</label><input type="number" id="edit-pessoal" class="w-full bg-gray-800 border border-gray-700 p-2 rounded-lg text-white font-bold"></div>
+                <div><label class="block text-orange-400 font-bold uppercase text-[10px] mb-0.5">Reserva Financeira</label><input type="number" id="edit-reserva-financeira" class="w-full bg-gray-800 border border-gray-700 p-2 rounded-lg text-white"></div>
+                <div><label class="block text-purple-400 font-bold uppercase text-[10px] mb-0.5">Poupança</label><input type="number" id="edit-investimento" class="w-full bg-gray-800 border border-gray-700 p-2 rounded-lg text-white"></div>
+            </div>
+            <div class="grid grid-cols-3 gap-2 pt-2 text-xs font-bold">
+                <button onclick="salvarEdicao()" class="bg-green-600 py-3 rounded-xl text-white">Salvar</button>
+                <button onclick="deletarLancamento()" class="bg-red-600 py-3 rounded-xl text-white">Deletar</button>
+                <button onclick="fecharModal()" class="bg-gray-700 py-3 rounded-xl text-gray-300">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE FECHAMENTO MENSAL -->
+    <div id="modal-fechar-mes" class="modal-overlay">
+        <div class="modal-content text-center space-y-4">
+            <h3 class="text-base font-bold text-yellow-500 uppercase tracking-wider">Confirmar Fechamento</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">Deseja arquivar os dados deste período? Seu histórico diário visível será limpo, mas o seu **Caixa Geral Acumulado no topo permanecerá intacto**.</p>
+            <div class="flex gap-2 text-xs font-bold pt-1">
+                <button onclick="confirmarFecharMes()" class="flex-1 bg-yellow-600 py-3.5 rounded-xl text-white">Confirmar</button>
+                <button onclick="fecharModalMes()" class="flex-1 bg-gray-800 border border-gray-700 py-3.5 rounded-xl text-gray-400">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER: BACKUP FIXO -->
+    <footer class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-gray-950 border-t border-gray-800 p-3 grid grid-cols-2 gap-3 z-50">
+        <button onclick="exportarBackup()" class="bg-gray-900 border border-gray-700 text-gray-300 font-bold py-3 rounded-xl text-xs uppercase tracking-wider">📦 Salvar Backup</button>
+        <label class="bg-gray-900 border border-gray-700 text-gray-300 font-bold py-3 rounded-xl text-xs uppercase tracking-wider text-center cursor-pointer block">
+            📥 Ler Backup <input type="file" id="importFile" accept=".txt" onchange="importarBackup(event)" class="hidden">
+        </label>
+    </footer>
+
+    <!-- Scripts Operacionais do Sistema -->
+    <script>
+        let dados = JSON.parse(localStorage.getItem('financeiro_pro')) || {
+            saldoAcumulado: 0,
+            historico: [],
+            mesesAnteriores: []
+        };
+        
+        let itensGastosTemporarios = [];
+        let lancamentoEmEdicao = null;
+
+        function formatarMoeda(valor) {
+            return (valor || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        function obterDataHoje() {
+            return new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', timeZone: 'America/Sao_Paulo' });
+        }
+
+        function aplicarSaudacaoAdsense() {
+            const hora = new Date().getHours();
+            let msg = "☀️ Boa tarde! Mantenha o foco nas metas do caixa.";
+            if (hora >= 5 && hora < 12) msg = "🌅 Bom dia! Ótimo trabalho e ótimos lucros hoje.";
+            else if (hora >= 18 || hora < 5) msg = "🌃 Boa noite! Fechando o caixa do dia com disciplina.";
+            document.getElementById('saudacao-adsense').innerText = msg;
+        }
+
+        function alternarMenuSugestoes() {
+            const conteudo = document.getElementById('menu-sugestoes-conteudo');
+            const seta = document.getElementById('seta-sugestoes');
+            if (conteudo.classList.contains('aberto')) {
+                conteudo.classList.remove('aberto');
+                seta.style.transform = 'rotate(0deg)';
             } else {
-                conteudo.style.maxHeight = null;
+                conteudo.classList.add('aberto');
+                seta.style.transform = 'rotate(180deg)';
             }
         }
 
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js').catch(err => console.log("Erro SW:", err));
-            });
+        function verificarTravaDiaria() {
+            const hoje = obterDataHoje();
+            const jaLancado = dados.historico.some(item => item.data === hoje);
+            const btnSalvar = document.getElementById('btn-salvar-principal');
+            const btnDetalhar = document.getElementById('btn-detalhar');
+
+            if (jaLancado) {
+                btnSalvar.innerText = `⚠️ ${hoje} JÁ LANÇADO`;
+                btnSalvar.className = "w-full bg-yellow-600 text-white font-bold py-4 rounded-xl text-sm uppercase tracking-wider mt-1 cursor-not-allowed";
+                btnSalvar.disabled = true;
+                btnDetalhar.disabled = true;
+                btnDetalhar.className = "bg-gray-950 text-gray-600 border-gray-800 py-1 px-3 rounded-lg text-xs uppercase font-bold cursor-not-allowed";
+                
+                ['faturamento', 'renda-extra', 'gasolina', 'manutencao', 'reserva-financeira', 'investimento'].forEach(id => {
+                    document.getElementById(id).disabled = true;
+                    document.getElementById(id).className = "input-bloqueado";
+                });
+            } else {
+                btnSalvar.innerText = "Salvar Lançamento do Dia";
+                btnSalvar.className = "w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl text-lg shadow-md uppercase tracking-wider mt-1";
+                btnSalvar.disabled = false;
+                btnDetalhar.disabled = false;
+                btnDetalhar.className = "bg-red-950 hover:bg-red-900 border border-red-600 text-white font-bold text-xs py-1 px-3 rounded-lg uppercase tracking-wider";
+                
+                ['faturamento', 'renda-extra', 'gasolina', 'manutencao', 'reserva-financeira', 'investimento'].forEach(id => {
+                    document.getElementById(id).disabled = false;
+                    document.getElementById(id).className = "input-autonomo";
+                });
+            }
         }
+
+        function atualizarUI() {
+            let totalHistoricoAtivo = 0;
+            dados.historico.forEach(item => { totalHistoricoAtivo += parseFloat(item.saldoDia) || 0; });
+            let totalMesesFechados = 0;
+            dados.mesesAnteriores.forEach(mes => { totalMesesFechados += parseFloat(mes.saldoFinalNoMes) || 0; });
+            dados.saldoAcumulado = totalHistoricoAtivo + totalMesesFechados;
+
+            const saldoEl = document.getElementById('saldo-total');
+            saldoEl.innerText = formatarMoeda(dados.saldoAcumulado);
+            saldoEl.className = `text-4xl font-black ${dados.saldoAcumulado >= 0 ? 'text-green-500' : 'text-red-500'}`;
+
+            const resumoContainer = document.getElementById('ultimo-resumo-container');
+            if (dados.historico.length > 0) {
+                const ultimo = dados.historico[dados.historico.length - 1];
+                resumoContainer.classList.remove('hidden');
+                document.getElementById('last-date').innerText = `${ultimo.data}`;
+                document.getElementById('last-ganho').innerText = formatarMoeda((parseFloat(ultimo.faturamento) || 0) + (parseFloat(ultimo.rendaExtra) || 0));
+                document.getElementById('last-gastos').innerText = formatarMoeda((parseFloat(ultimo.gasolina) || 0) + (parseFloat(ultimo.manutencao) || 0) + (parseFloat(ultimo.pessoal) || 0));
+                document.getElementById('last-reserva').innerText = formatarMoeda((parseFloat(ultimo.reservaFinanceira) || 0) + (parseFloat(ultimo.investimento) || 0));
+            } else {
+                resumoContainer.classList.add('hidden');
+            }
+
+            let totalFat = 0, totalRenda = 0, totalGas = 0, totalMan = 0, totalPes = 0, totalInv = 0, totalRes = 0;
+            dados.historico.forEach(item => {
+                totalFat += parseFloat(item.faturamento) || 0; totalRenda += parseFloat(item.rendaExtra) || 0;
+                totalGas += parseFloat(item.gasolina) || 0; totalMan += parseFloat(item.manutencao) || 0;
+                totalPes += parseFloat(item.pessoal) || 0; totalInv += parseFloat(item.investimento) || 0;
+                totalRes += parseFloat(item.reservaFinanceira) || 0;
+            });
+
+            document.getElementById('total-faturamento').innerText = formatarMoeda(totalFat);
+            document.getElementById('total-renda-extra').innerText = formatarMoeda(totalRenda);
+            document.getElementById('total-gasolina').innerText = formatarMoeda(totalGas);
+            document.getElementById('total-manutencao').innerText = formatarMoeda(totalMan);
+            document.getElementById('total-pessoal').innerText = formatarMoeda(totalPes);
+            document.getElementById('total-reserva-aba').innerText = formatarMoeda(totalRes);
+            document.getElementById('total-investimento-aba').innerText = formatarMoeda(totalInv);
+
+            const tbody = document.getElementById('historico-body'); tbody.innerHTML = '';
+            if (dados.historico.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="3" class="p-6 text-center text-gray-600 italic text-xs">Nenhum registro ativo</td></tr>';
+            } else {
+                [...dados.historico].reverse().forEach((item, index) => {
+                    const idxReal = dados.historico.length - 1 - index;
+                    const tr = document.createElement('tr');
+                    tr.className = 'border-t border-gray-800 hover:bg-gray-800/30 text-xs';
+                    const sDia = parseFloat(item.saldoDia) || 0;
+                    const indicadorPlanilha = (item.detalheGastos && item.detalheGastos.length > 0) ? `<span class="block text-[9px] text-red-500 font-black uppercase mt-0.5">📋 DETALHADO</span>` : '';
+                    tr.innerHTML = `
+                        <td class="p-3 text-white font-black">${item.data}${indicadorPlanilha}</td>
+                        <td class="p-3 font-bold ${sDia >= 0 ? 'text-green-500' : 'text-red-500'}">${formatarMoeda(sDia)}</td>
+                        <td class="p-3 text-right"><button onclick="abrirEdicao(${idxReal})" class="text-blue-400 font-bold border-2 border-blue-600 bg-blue-950 px-2.5 py-1 rounded-md text-xs">Ajustar</button></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+
+            const mContainer = document.getElementById('meses-anteriores-container');
+            if (dados.mesesAnteriores.length === 0) {
+                mContainer.innerHTML = ''; document.getElementById('meses-vazios').classList.remove('hidden');
+            } else {
+                document.getElementById('meses-vazios').classList.add('hidden');
+                mContainer.innerHTML = dados.mesesAnteriores.map((mes, idx) => `
+                    <div class="bg-gray-900 p-3 rounded-xl border border-gray-800 flex justify-between items-center text-xs">
+                        <div>
+                            <h4 class="font-bold text-gray-300 uppercase text-[10px]">${mes.periodo}</h4>
+                            <p class="text-gray-400 text-[10px] mt-0.5">Faturamento: <span class="text-green-400 font-bold">${formatarMoeda(mes.faturamentoTotal + mes.rendaExtraTotal)}</span></p>
+                        </div>
+                        <div class="text-right flex items-center gap-3">
+                            <div><span class="text-[9px] text-gray-500 block uppercase font-bold">Fundo Líquido</span><span class="font-bold text-blue-400">${formatarMoeda(mes.saldoFinalNoMes)}</span></div>
+                            <button onclick="deletarMesAnterior(${idx})" class="text-red-500 text-sm">🗑️</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            verificarTravaDiaria();
+        }
+
+        function abrirSubjanelaGastos() { document.getElementById('subjanela-gastos').classList.add('active'); renderizarListaSubjanela(); }
+        function fecharSubjanelaGastos() { document.getElementById('subjanela-gastos').classList.remove('active'); }
+
+        function adicionarItemNaLista() {
+            const descEl = document.getElementById('gasto-item-desc'); const valEl = document.getElementById('gasto-item-val');
+            const desc = descEl.value.trim(); const val = parseFloat(valEl.value) || 0;
+            if (!desc || val <= 0) return;
+            itensGastosTemporarios.push({ descricao: desc, valor: val });
+            descEl.value = ''; valEl.value = ''; renderizarListaSubjanela();
+        }
+
+        function removerItemDaLista(idx) { itensGastosTemporarios.splice(idx, 1); renderizarListaSubjanela(); }
+
+        function renderizarListaSubjanela() {
+            const tBody = document.getElementById('lista-gastos-correntes-body'); tBody.innerHTML = ''; let tot = 0;
+            itensGastosTemporarios.forEach((item, index) => {
+                tot += item.valor;
+                const tr = document.createElement('tr'); tr.className = 'border-t border-gray-800 text-xs';
+                tr.innerHTML = `<td class="p-2 text-gray-300">${item.descricao}</td><td class="p-2 text-white font-bold">${formatarMoeda(item.valor)}</td><td class="p-2 text-right"><button onclick="removerItemDaLista(${index})" class="text-red-500 font-bold px-1">✕</button></td>`;
+                tBody.appendChild(tr);
+            });
+            document.getElementById('subjanela-total-acumulado').innerText = formatarMoeda(tot);
+        }
+
+        function salvarSubjanelaGastos() {
+            let tot = 0; itensGastosTemporarios.forEach(i => tot += i.valor);
+            document.getElementById('pessoal').value = tot > 0 ? tot.toFixed(2) : ''; fecharSubjanelaGastos();
+        }
+
+        function salvarLancamento(event) {
+            const fat = parseFloat(document.getElementById('faturamento').value) || 0;
+            const ren = parseFloat(document.getElementById('renda-extra').value) || 0;
+            const gas = parseFloat(document.getElementById('gasolina').value) || 0;
+            const pes = parseFloat(document.getElementById('pessoal').value) || 0;
+            const man = parseFloat(document.getElementById('manutencao').value) || 0;
+            const res = parseFloat(document.getElementById('reserva-financeira').value) || 0;
+            const inv = parseFloat(document.getElementById('investimento').value) || 0;
+
+            if (!fat && !ren && !gas && !pes && !man && !inv && !res) return;
+            const sDia = (fat + ren) - gas - pes - man - res - inv;
+
+            dados.historico.push({
+                data: obterDataHoje(), faturamento: fat, rendaExtra: ren, gasolina: gas, pessoal: pes, manutencao: man, reservaFinanceira: res, investimento: inv,
+                saldoDia: sDia, detalheGastos: [...itensGastosTemporarios], timestamp: new Date().getTime()
+            });
+
+            localStorage.setItem('financeiro_pro', JSON.stringify(dados));
+            ['faturamento', 'renda-extra', 'gasolina', 'pessoal', 'manutencao', 'reserva-financeira', 'investimento'].forEach(id => document.getElementById(id).value = '');
+            itensGastosTemporarios = []; atualizarUI();
+        }
+
+        function abrirEdicao(idx) {
+            lancamentoEmEdicao = idx; const item = dados.historico[idx];
+            document.getElementById('edit-data').value = item.data;
+            document.getElementById('edit-faturamento').value = item.faturamento || 0;
+            document.getElementById('edit-renda-extra').value = item.rendaExtra || 0;
+            document.getElementById('edit-gasolina').value = item.gasolina || 0;
+            document.getElementById('edit-pessoal').value = item.pessoal || 0;
+            document.getElementById('edit-manutencao').value = item.manutencao || 0;
+            document.getElementById('edit-reserva-financeira').value = item.reservaFinanceira || 0;
+            document.getElementById('edit-investimento').value = item.investimento || 0;
+            document.getElementById('modal-edicao').classList.add('active');
+        }
+
+        function fecharModal() { document.getElementById('modal-edicao').classList.remove('active'); lancamentoEmEdicao = null; }
+
+        function salvarEdicao() {
+            if (lancamentoEmEdicao === null) return; const item = dados.historico[lancamentoEmEdicao];
+            item.faturamento = parseFloat(document.getElementById('edit-faturamento').value) || 0;
+            item.rendaExtra = parseFloat(document.getElementById('edit-renda-extra').value) || 0;
+            item.gasolina = parseFloat(document.getElementById('edit-gasolina').value) || 0;
+            item.pessoal = parseFloat(document.getElementById('edit-pessoal').value) || 0;
+            item.manutencao = parseFloat(document.getElementById('edit-manutencao').value) || 0;
+            item.reservaFinanceira = parseFloat(document.getElementById('edit-reserva-financeira').value) || 0;
+            item.investimento = parseFloat(document.getElementById('edit-investimento').value) || 0;
+            item.saldoDia = (item.faturamento + item.rendaExtra) - item.gasolina - item.pessoal - item.manutencao - item.reservaFinanceira - item.investimento;
+            localStorage.setItem('financeiro_pro', JSON.stringify(dados)); fecharModal(); atualizarUI();
+        }
+
+        function deletarLancamento() {
+            if (lancamentoEmEdicao === null) return;
+            if (confirm('Excluir registro?')) { dados.historico.splice(lancamentoEmEdicao, 1); localStorage.setItem('financeiro_pro', JSON.stringify(dados)); fecharModal(); atualizarUI(); }
+        }
+
+        function abrirFecharMes() { document.getElementById('modal-fechar-mes').classList.add('active'); }
+        function fecharModalMes() { document.getElementById('modal-fechar-mes').classList.remove('active'); }
+
+        function confirmarFecharMes() {
+            if (dados.historico.length === 0) return;
+            const periodo = `${new Date().toLocaleString('pt-BR', { month: 'long', year: 'numeric', timeZone: 'America/Sao_Paulo' })}`.toUpperCase();
+            let fat = 0, ren = 0, sMes = 0;
+            dados.historico.forEach(i => { fat += parseFloat(i.faturamento) || 0; ren += parseFloat(i.rendaExtra) || 0; sMes += parseFloat(i.saldoDia) || 0; });
+            dados.mesesAnteriores.push({ periodo, faturamentoTotal: fat, rendaExtraTotal: ren, saldoFinalNoMes: sMes, historico: [...dados.historico] });
+            dados.historico = []; localStorage.setItem('financeiro_pro', JSON.stringify(dados)); fecharModalMes(); atualizarUI();
+        }
+
+        function deletarMesAnterior(idx) { if (confirm('Excluir período?')) { dados.mesesAnteriores.splice(idx, 1); localStorage.setItem('financeiro_pro', JSON.stringify(dados)); atualizarUI(); } }
+        function limparDados() { if (confirm('Zerar app?')) { dados = { saldoAcumulado: 0, historico: [], mesesAnteriores: [] }; localStorage.setItem('financeiro_pro', JSON.stringify(dados)); atualizarUI(); } }
+
+        function exportarBackup() {
+            const dl = document.createElement('a'); dl.setAttribute("href", "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dados)));
+            dl.setAttribute("download", `backup_financeiro_${new Date().toISOString().slice(0,10)}.txt`); document.body.appendChild(dl); dl.click(); dl.remove();
+        }
+
+        function importarBackup(ev) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                try {
+                    const parsed = JSON.parse(reader.result);
+                    if (parsed && Array.isArray(parsed.historico)) { dados = parsed; localStorage.setItem('financeiro_pro', JSON.stringify(dados)); atualizarUI(); }
+                } catch (e) { alert('Erro.'); }
+            };
+            if (ev.target.files.length > 0) reader.readAsText(ev.target.files[0]);
+        }
+
+        if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(err => console.error(err));
+        
+        aplicarSaudacaoAdsense();
+        atualizarUI();
     </script>
 </body>
 </html>
+<!-- Link para Política de Privacidade -->
+<div class="text-center py-6">
+    <a href="privacidade.html" class="text-[10px] text-zinc-600 underline uppercase tracking-widest hover:text-emerald-500 transition-colors">
+        Política de Privacidade
+    </a>
+</div>
 
