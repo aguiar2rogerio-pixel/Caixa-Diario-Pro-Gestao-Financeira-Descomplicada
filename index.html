@@ -8,8 +8,8 @@
     <meta name="google-site-verification" content="bLZmBVa_bJaMGYGaIyc40I9sXH7-J481-QgJ8jPEZu4" />
     
     <!-- 🚀 METADADOS PROFISSIONAIS PARA SEO E PWA -->
-    <title>Financeiro Pró - Fluxo de Caixa e Controle Diário</title>
-    <meta name="description" content="Gerencie seu faturamento, despesas com combustível, manutenção e poupança em um único lugar. Otimizado para autônomos e motoristas.">
+    <title>Financeiro Pró - Fluxo de Caixa Diário</title>
+    <meta name="description" content="Gerencie seu faturamento, custos operacionais e poupança em um único lugar. Otimizado para o dia a dia.">
     <meta name="theme-color" content="#0b111e">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -20,14 +20,15 @@
 
     <style>
         :root {
-            --bg-principal: #0b111e;
-            --bg-card: #131c2e;
-            --azul-destaque: #1a56db;
-            --azul-hover: #1e429f;
+            --bg-principal: #070b13;
+            --bg-card: #0f172a;
+            --azul-destaque: #1e40af;
+            --azul-glow: #3b82f6;
             --verde-sucesso: #10b981;
-            --texto-claro: #f3f4f6;
-            --texto-mutado: #9ca3af;
+            --texto-claro: #f8fafc;
+            --texto-mutado: #94a3b8;
             --borda: #1e293b;
+            --borda-glow: #2563eb;
         }
 
         * {
@@ -35,12 +36,13 @@
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background-color: var(--bg-principal);
             color: var(--texto-claro);
-            padding: 20px;
+            padding: 24px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -49,129 +51,164 @@
 
         .container {
             width: 100%;
-            max-width: 480px;
+            max-width: 440px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 24px;
         }
 
-        /* 📋 TOPO DA LANDING PAGE */
+        /* 📋 TOPO PREMIUM MOBILE */
         .header-landing {
             text-align: center;
-            padding: 10px 0;
+            padding: 16px 0 8px 0;
         }
 
         .header-landing h1 {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
+            font-weight: 800;
             color: var(--texto-claro);
-            margin-bottom: 5px;
+            letter-spacing: -0.025em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .header-landing p {
-            font-size: 0.95rem;
+            font-size: 1.1rem;
+            line-height: 1.5;
             color: var(--texto-mutado);
+            padding: 0 10px;
         }
 
-        /* 💰 ESTILIZAÇÃO DOS BLOCOS ADSENSE COM PÍLULAS CONFORTÁVEIS */
+        /* 💰 BLOCOS ADSENSE PREMIUM (Glow sutil de fundo) */
         .adsense-container {
             background-color: var(--bg-card);
-            border: 1px dashed var(--borda);
-            border-radius: 12px;
-            min-height: 90px;
+            border: 1px solid var(--borda);
+            border-radius: 16px;
+            min-height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 10px;
-            position: relative;
-            overflow: hidden;
+            padding: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
         }
 
         .adsense-placeholder {
             color: var(--texto-mutado);
-            font-size: 0.85rem;
-            z-index: 1;
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.4;
         }
 
-        /* 🚀 BOTÃO DE ACESSO PRINCIPAL */
+        /* 🚀 BOTÃO DE ACESSO CENTRALIZADO NO DEDO (MAIOR E LEGÍVEL) */
         .btn-acesso-principal {
-            background-color: var(--azul-destaque);
+            background: linear-gradient(135deg, var(--azul-destaque), #1d4ed8);
             color: white;
-            border: none;
-            border-radius: 12px;
-            padding: 18px;
-            font-size: 1.2rem;
-            font-weight: bold;
+            border: 1px solid var(--borda-glow);
+            border-radius: 16px;
+            padding: 22px;
+            font-size: 1.3rem;
+            font-weight: 700;
             text-align: center;
             text-decoration: none;
-            box-shadow: 0 4px 12px rgba(26, 86, 219, 0.3);
-            transition: background-color 0.2s, transform 0.1s;
-            cursor: pointer;
+            letter-spacing: 0.05em;
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.2);
+            transition: transform 0.1s;
         }
 
         .btn-acesso-principal:active {
-            background-color: var(--azul-hover);
-            transform: scale(0.98);
+            transform: scale(0.97);
+            background: #1d4ed8;
         }
 
-        /* 📖 CARDS DO MANUAL DE USO */
-        .card-manual {
-            background-color: var(--bg-card);
-            border: 1px solid var(--borda);
-            border-radius: 16px;
-            padding: 20px;
-        }
-
-        .card-manual h2 {
-            font-size: 1.2rem;
-            color: var(--verde-sucesso);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .lista-passos {
-            list-style: none;
+        /* 💡 SEÇÃO RETRÁTIL DO MANUAL (ACCORDION) - LIMPA A TELA */
+        .manual-wrapper {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
-        .lista-passos li {
-            font-size: 0.95rem;
-            line-height: 1.4;
-            color: var(--texto-claro);
-            padding-left: 24px;
-            position: relative;
-        }
-
-        .lista-passos li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
+        .manual-titulo {
+            font-size: 1.2rem;
+            font-weight: 700;
             color: var(--verde-sucesso);
-            font-weight: bold;
+            margin-bottom: 4px;
+            padding-left: 4px;
         }
 
-        .lista-passos li strong {
+        .accordion-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--borda);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--texto-claro);
+            padding: 16px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .accordion-header::after {
+            content: "▼";
+            font-size: 0.8rem;
+            color: var(--texto-mutado);
+            transition: transform 0.2s;
+        }
+
+        .accordion-item.ativo .accordion-header::after {
+            transform: rotate(180deg);
+            color: var(--verde-sucesso);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            background-color: rgba(7, 11, 19, 0.4);
+        }
+
+        .accordion-body {
+            padding: 16px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--texto-mutado);
+            border-top: 1px solid var(--borda);
+        }
+
+        .accordion-body strong {
             color: var(--texto-claro);
         }
 
-        /* 🔒 RODAPÉ DE SEGURANÇA */
+        /* 🔒 RODAPÉ AJUSTADO E SEGURO */
         .footer-landing {
             text-align: center;
-            font-size: 0.8rem;
-            color: var(--texto-mutated);
-            margin-top: 10px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--texto-mutado);
+            margin-top: 12px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 12px;
+            padding: 0 10px;
         }
 
         .footer-landing a {
-            color: var(--texto-mutado);
+            color: var(--texto-claro);
             text-decoration: underline;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -179,15 +216,15 @@
 
     <div class="container">
 
-        <!-- TOPO INFORMATIVO -->
+        <!-- HEADER PRINCIPAL -->
         <header class="header-landing">
             <h1>📊 Financeiro Pró</h1>
-            <p>Seu controle diário de caixa, simples e eficiente</p>
+            <p>Seu controle diário de caixa profissional, direto no celular.</p>
         </header>
 
-        <!-- 💰 BLOCO DE ANÚNCIO DO TOPO -->
+        <!-- 💰 ANÚNCIO SUPERIOR -->
         <div class="adsense-container">
-            <span class="adsense-placeholder">🔒 Carregando ferramentas de otimização e ofertas...</span>
+            <span class="adsense-placeholder">🔒 Verificando melhores ofertas e cupons recomendados...</span>
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
@@ -199,24 +236,53 @@
 
         <!-- 🚀 BOTÃO DE ENTRADA DO APLICATIVO -->
         <a href="app.html" class="btn-acesso-principal">
-            ENTRAR NO APLICATIVO GRÁTIS
+            ABRIR O PAINEL PRÓ →
         </a>
 
-        <!-- 📖 MANUAL DE USO COMPLETO (SEO + VALOR PARA O USUÁRIO) -->
-        <section class="card-manual">
-            <h2>💡 Como Utilizar o Aplicativo</h2>
-            <ul class="lista-passos">
-                <li><strong>Lançamento Diário:</strong> Preencha o seu faturamento bruto do dia e suas despesas obrigatórias de rotina.</li>
-                <li><strong>Custos Operacionais:</strong> Dedique os campos específicos para registrar gastos com <strong>Combustível</strong> e fundos para <strong>Reserva de Manutenção</strong> do seu veículo ou ferramenta de trabalho.</li>
-                <li><strong>Gastos Pessoais:</strong> Utilize o botão "Detalhar" para acompanhar de perto suas retiradas e despesas de cunho pessoal.</li>
-                <li><strong>Reservas de Futuro:</strong> Proteja suas finanças separando os valores destinados à sua <strong>Reserva Financeira</strong> e à sua <strong>Poupança</strong> acumulada.</li>
-                <li><strong>Fechamento Mensal:</strong> Ao término do período, utilize o botão de fechamento para consolidar seu saldo líquido e arquivar o histórico de forma organizada por meses.</li>
-            </ul>
+        <!-- 💡 NOVO MANUAL RETRÁTIL (ESTILO ACCORDION) -->
+        <section class="manual-wrapper">
+            <h2 class="manual-titulo">💡 Guia Rápido de Uso</h2>
+            
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">1. Lançamento Diário</button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Preencha o seu <strong>Faturamento Bruto</strong> obtido no dia e lance suas despesas fixas imediatas de forma descomplicada.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">2. Custos do Veículo</button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Monitore de perto os gastos com <strong>Combustível</strong> e defina a porcentagem da sua <strong>Reserva de Manutenção</strong> para evitar surpresas mecânicas.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">3. Gastos Pessoais</button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Use o painel interno <strong>"Detalhar"</strong> para separar retiradas de dinheiro pessoais dos custos operacionais do seu trabalho.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">4. Fechamento Mensal</button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        Ao fim do mês, clique em <strong>"Fechar Balanço Mensal"</strong> para limpar a tela de trabalho e salvar o saldo líquido direto no histórico do seu aparelho.
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- 💰 BLOCO DE ANÚNCIO INFERIOR -->
+        <!-- 💰 ANÚNCIO INFERIOR -->
         <div class="adsense-container">
-            <span class="adsense-placeholder">💡 Buscando cupons e vantagens exclusivas para hoje...</span>
+            <span class="adsense-placeholder">💡 Achados e recomendações úteis para a sua rotina...</span>
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
@@ -227,16 +293,38 @@
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
 
-        <!-- RODAPÉ E POLÍTICA -->
+        <!-- RODAPÉ CORRIGIDO COM PRIVACIDADE.HTML -->
         <footer class="footer-landing">
-            <span>🛡️ Conexão local segura ativa. Seus dados nunca saem do seu dispositivo.</span>
-            <a href="politica.html">Política de Privacidade</a>
+            <span>🛡️ Conexão local criptografada. Seus registros financeiros ficam salvos apenas no seu telefone.</span>
+            <a href="privacidade.html">Política de Privacidade</a>
         </footer>
 
     </div>
 
-    <!-- SCRIPT DE REGISTRO DO SERVICE WORKER (Para a landing page também funcionar offline se necessário) -->
+    <!-- SCRIPT DE USABILIDADE DO ACCORDION MOBILE -->
     <script>
+        function toggleAccordion(botao) {
+            const item = botao.parentElement;
+            const conteudo = botao.nextElementSibling;
+            
+            // Fecha outros que estiverem abertos para economizar espaço em tela móvel
+            document.querySelectorAll('.accordion-item').forEach(outro => {
+                if (outro !== item) {
+                    outro.classList.remove('ativo');
+                    outro.querySelector('.accordion-content').style.maxHeight = null;
+                }
+            });
+
+            // Alterna o atual
+            item.classList.toggle('ativo');
+            if (item.classList.contains('ativo')) {
+                conteudo.style.maxHeight = conteudo.scrollHeight + "px";
+            } else {
+                conteudo.style.maxHeight = null;
+            }
+        }
+
+        // Registro do Service Worker para o PWA offline
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js').catch(err => console.log("Erro SW:", err));
@@ -245,3 +333,4 @@
     </script>
 </body>
 </html>
+
