@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- 🔑 TAG DE VERIFICAÇÃO DO GOOGLE SEARCH CONSOLE -->
+    <!-- 🔑 1. SUA TAG REAL DE VERIFICAÇÃO DO GOOGLE SEARCH CONSOLE -->
     <meta name="google-site-verification" content="bLZmBVa_bJaMGYGaIyc40I9sXH7-J481-QgJ8jPEZu4" />
     
-    <!-- 🚀 METADADOS PROFISSIONAIS PARA SEO E PWA -->
+    <!-- 🚀 METADADOS PROFISSIONAIS (OCULTOS PARA O GOOGLE E PWA) -->
     <title>Financeiro Pró - Fluxo de Caixa Diário</title>
     <meta name="description" content="Gerencie seu faturamento, custos operacionais e poupança em um único lugar. Otimizado para o dia a dia.">
     <meta name="theme-color" content="#0b111e">
@@ -15,7 +15,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="manifest" href="manifest.json">
     
-    <!-- 💰 SCRIPT PRINCIPAL DO GOOGLE ADSENSE -->
+    <!-- 💰 2. SCRIPT DE ATIVAÇÃO DO GOOGLE ADSENSE (CÓDIGO OCULTO DO SEU APP) -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 
     <style>
@@ -25,6 +25,7 @@
             --azul-destaque: #1e40af;
             --azul-glow: #3b82f6;
             --verde-sucesso: #10b981;
+            --laranja-alerta: #f97316;
             --texto-claro: #f8fafc;
             --texto-mutado: #94a3b8;
             --borda: #1e293b;
@@ -69,23 +70,18 @@
             color: var(--texto-claro);
             letter-spacing: -0.025em;
             margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
         }
 
         .header-landing p {
             font-size: 1.1rem;
             line-height: 1.5;
             color: var(--texto-mutado);
-            padding: 0 10px;
         }
 
-        /* 💰 BLOCOS ADSENSE PREMIUM (Glow sutil de fundo) */
+        /* 💰 3. ONDE ESTÃO OS ESPAÇOS DO ADSENSE (ESTILIZADOS COM PÍLULA DE FUNDO) */
         .adsense-container {
             background-color: var(--bg-card);
-            border: 1px solid var(--borda);
+            border: 1px dashed var(--borda-glow);
             border-radius: 16px;
             min-height: 100px;
             display: flex;
@@ -94,16 +90,17 @@
             text-align: center;
             padding: 16px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+            position: relative;
         }
 
         .adsense-placeholder {
             color: var(--texto-mutado);
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 500;
             line-height: 1.4;
         }
 
-        /* 🚀 BOTÃO DE ACESSO CENTRALIZADO NO DEDO (MAIOR E LEGÍVEL) */
+        /* 🚀 BOTÃO DE ACESSO CENTRALIZADO NO DEDO */
         .btn-acesso-principal {
             background: linear-gradient(135deg, var(--azul-destaque), #1d4ed8);
             color: white;
@@ -121,10 +118,79 @@
 
         .btn-acesso-principal:active {
             transform: scale(0.97);
-            background: #1d4ed8;
         }
 
-        /* 💡 SEÇÃO RETRÁTIL DO MANUAL (ACCORDION) - LIMPA A TELA */
+        /* 🛍️ 4. SEÇÃO DE LINKS DE AFILIADOS (PÍLULAS NAVEGÁVEIS COMPACTAS) */
+        .afiliados-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .afiliados-titulo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--laranja-alerta);
+            padding-left: 4px;
+        }
+
+        /* Carrossel de Pílulas Horizontais */
+        .afiliados-carrossel {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .afiliados-carrossel::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .afiliados-carrossel::-webkit-scrollbar-thumb {
+            background: var(--borda);
+            border-radius: 4px;
+        }
+
+        .pilula-link {
+            flex: 0 0 85%;
+            scroll-snap-align: start;
+            background-color: var(--bg-card);
+            border: 1px solid var(--borda);
+            border-radius: 12px;
+            padding: 16px;
+            text-decoration: none;
+            color: var(--texto-claro);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .pilula-link:active {
+            border-color: var(--laranja-alerta);
+        }
+
+        .pilula-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--laranja-alerta);
+            letter-spacing: 0.05em;
+        }
+
+        .pilula-nome {
+            font-size: 1.05rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .pilula-sub {
+            font-size: 0.85rem;
+            color: var(--texto-mutado);
+        }
+
+        /* 💡 SEÇÃO RETRÁTIL DO MANUAL (ACCORDION) */
         .manual-wrapper {
             display: flex;
             flex-direction: column;
@@ -135,7 +201,6 @@
             font-size: 1.2rem;
             font-weight: 700;
             color: var(--verde-sucesso);
-            margin-bottom: 4px;
             padding-left: 4px;
         }
 
@@ -158,7 +223,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            cursor: pointer;
         }
 
         .accordion-header::after {
@@ -202,7 +266,6 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            padding: 0 10px;
         }
 
         .footer-landing a {
@@ -222,9 +285,10 @@
             <p>Seu controle diário de caixa profissional, direto no celular.</p>
         </header>
 
-        <!-- 💰 ANÚNCIO SUPERIOR -->
+        <!-- 💰 ESPAÇO DO ADSENSE 1 (TOPO) -->
         <div class="adsense-container">
-            <span class="adsense-placeholder">🔒 Verificando melhores ofertas e cupons recomendados...</span>
+            <span class="adsense-placeholder">🔒 Buscando melhores ferramentas de otimização...</span>
+            <!-- O script do AdSense injetará o anúncio real exatamente aqui dentro -->
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
@@ -239,7 +303,33 @@
             ABRIR O PAINEL PRÓ →
         </a>
 
-        <!-- 💡 NOVO MANUAL RETRÁTIL (ESTILO ACCORDION) -->
+        <!-- 🛍️ SEÇÃO DE LINKS DE AFILIADOS (PÍLULAS NAVEGÁVEIS IGUAIS ÀS SUAS) -->
+        <section class="afiliados-wrapper">
+            <h2 class="afiliados-titulo">⚡ Indicações & Ferramentas Recomendadas</h2>
+            
+            <div class="afiliados-carrossel">
+                <!-- Substitua o '#' pelo seu link real da maquininha/afiliado -->
+                <a href="#" target="_blank" class="pilula-link">
+                    <span class="pilula-tag">Maquininha Pró</span>
+                    <span class="pilula-nome">Melhores Taxas para Autônomos</span>
+                    <span class="pilula-sub">Garanta o menor desconto no seu faturamento diário.</span>
+                </a>
+
+                <a href="#" target="_blank" class="pilula-link">
+                    <span class="pilula-tag">Utensílios</span>
+                    <span class="pilula-nome">Organizadores & Suportes Veiculares</span>
+                    <span class="pilula-sub">Melhores achados em oferta para o seu dia a dia.</span>
+                </a>
+
+                <a href="#" target="_blank" class="pilula-link">
+                    <span class="pilula-tag">Livros</span>
+                    <span class="pilula-nome">Mentalidade Financeira e Negócios</span>
+                    <span class="pilula-sub">Leituras recomendadas para turbinar seus lucros.</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 💡 MANUAL RETRÁTIL (MANTÉM O MOBILE LIMPO) -->
         <section class="manual-wrapper">
             <h2 class="manual-titulo">💡 Guia Rápido de Uso</h2>
             
@@ -280,9 +370,9 @@
             </div>
         </section>
 
-        <!-- 💰 ANÚNCIO INFERIOR -->
+        <!-- 💰 ESPAÇO DO ADSENSE 2 (INFERIOR) -->
         <div class="adsense-container">
-            <span class="adsense-placeholder">💡 Achados e recomendações úteis para a sua rotina...</span>
+            <span class="adsense-placeholder">💡 Carregando cupons e vantagens exclusivas...</span>
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
@@ -301,13 +391,11 @@
 
     </div>
 
-    <!-- SCRIPT DE USABILIDADE DO ACCORDION MOBILE -->
     <script>
         function toggleAccordion(botao) {
             const item = botao.parentElement;
             const conteudo = botao.nextElementSibling;
             
-            // Fecha outros que estiverem abertos para economizar espaço em tela móvel
             document.querySelectorAll('.accordion-item').forEach(outro => {
                 if (outro !== item) {
                     outro.classList.remove('ativo');
@@ -315,7 +403,6 @@
                 }
             });
 
-            // Alterna o atual
             item.classList.toggle('ativo');
             if (item.classList.contains('ativo')) {
                 conteudo.style.maxHeight = conteudo.scrollHeight + "px";
@@ -324,7 +411,6 @@
             }
         }
 
-        // Registro do Service Worker para o PWA offline
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js').catch(err => console.log("Erro SW:", err));
